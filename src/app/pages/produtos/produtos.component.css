@@ -1,85 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Nunito&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
-
-
-/* Ajustando a largura da imagem */
 .card-img-top.full-width {
-  grid-column: span 3; /* Faz a imagem ocupar 3 colunas do grid */
-  object-fit: cover; /* Garante que a imagem cubra toda a área */
+  grid-column: span 3; 
+  object-fit: cover;
   border-radius: 10px;
   margin-bottom: 1rem;
-  order: 1; /* Garantir que o banner fique acima do filtro em telas maiores */
-  position: relative; /* A posição é relativa, para não interferir no layout do resto da página */
-  top: 0; /* Garantir que o banner fique no topo da página */
+  order: 1;
+  position: relative;
+  top: 0;
   width: 100%;
-  z-index: 2; /* Faz o banner ficar acima do filtro */
+  z-index: 1; 
   background-color: #49176d;
 }
-
-.card-img-top .Banner{
+.card-img-top .Banner, 
+.centralizar > .card-img-top.full-width {
   height: 800px;
 }
 
-/* Altura suficiente para o Banner */
-.centralizar > .card-img-top.full-width {
-  height: 800px; /* Confirme que a altura é suficiente para o banner */
-}
-
-/* Container da página principal */
 .page-container {
   display: flex;
-  flex-wrap: nowrap; /* Garante que a sidebar e a área de produtos estejam em linha */
+  flex-wrap: nowrap;
   padding: 2rem;
 }
 
-/* Sidebar de filtro */
 .filter-sidebar {
-  position: fixed;
+  position: sticky;
   top: 2rem;
   left: 2%;
   width: 260px;
-  /* background-color: #f4f4f4; */
   border-radius: 8px;
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   height: calc(100vh - 4rem);
-  overflow-y: auto;
+  overflow-x: auto;
+  z-index: 1000; 
 }
-
-
-/* Container de produtos */
 .product-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); /* Isso vai ajustar as colunas automaticamente */
-  gap: 1rem;
-  padding: 2rem 1rem;
-  margin-left: 220px; /* Ajuste dependendo da largura da sidebar */
-  flex: 1 1 auto;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); /* Largura mínima dos cards */
+  gap: 0.5rem; 
+  padding: 1rem;
+  margin-left: 3%; 
+  flex: 1;
 }
 
-/* Container que organiza e centraliza os cards */
 .centralizar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   justify-items: center;
   padding: 1rem;
-    /* Agora a imagem que ocupa 3 cards */
-    grid-template-areas: 
-    "banner banner banner" 
-    "product1 product2 product3"; /* Definindo a área de 3 cards para produtos */
+  grid-template-areas: 
+    "banner banner banner"
+    "product1 product2 product3";
 }
 
-/* Card de produto */
 .container-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: auto;
-  max-width: 360px;
-  width: 200%;
+  max-width: 100%; /* Ajuste para largura total */
+  width: 100%; /* Ajuste para largura total */
 }
 
-/* Estilo do card */
+
 .card {
   border: none;
   background-color: #ffffff;
@@ -93,24 +76,21 @@
   height: 100%;
 }
 
-/* botão mostrar todos */
-.clear{
-    background: #49176d;
-    border: none;
-    color: #ffffff;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    border-radius: 10px;
-    transition: background-color 0.3s;
-    text-decoration: none;
+.clear {
+  background: #49176d;
+  border: none;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  text-decoration: none;
 }
 
-/* Do filtro */
-h3{
+h3 {
   color: #49176d;
 }
 
-/* Barra de valores */
 input[type="range"] {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -121,53 +101,40 @@ input[type="range"] {
   border-radius: 4px;
 }
 
-/* Filtro checkbox */
 input[type="checkbox"] {
-  width: 14px; 
+  width: 14px;
   height: 14px;
-  background-color:  #fbfafc; /* Cor de fundo */
-  border-radius: 4px; /* Bordas arredondadas */
-  border: 1px solid #49176d; /* Borda do checkbox */
-  appearance: none; /* Remove o estilo padrão */
+  background-color: #fbfafc;
+  border-radius: 4px;
+  border: 1px solid #49176d;
+  appearance: none;
   cursor: pointer;
   position: relative;
 }
 
-/* Quando o checkbox é marcado */
 input[type="checkbox"]:checked {
-  background-color: #49176d; 
+  background-color: #49176d;
 }
 
-
-/* Hover botão mostrar todos */
-.clear:hover{
-  transform: translateY(-2px);
-  background-color:  #774799;
-}
-
-/* Efeito de hover no card */
-.card:hover {
+.clear:hover, .card:hover {
   transform: translateY(-2px);
 }
 
-/* Estilo da imagem do card */
 .card-img-top {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-img{
+img {
   width: 100%;
   height: 200px;
   margin-top: 1rem;
 }
 
-/* Estilo do corpo do card */
 .card-body {
   text-align: center;
 }
 
-/* Título do card */
 .card-title {
   font-size: 1rem;
   font-weight: bold;
@@ -175,26 +142,23 @@ img{
   margin-bottom: 0.3rem;
 }
 
-/* Texto do card */
 .card-text {
-  font-size: 1.2rem; /* Tamanho da fonte para o preço */
-  color: #5b5a5c; /* Cor do preço (pode ser ajustada conforme a necessidade) */
-  font-weight: bold; /* Deixa o preço em negrito */
-  text-align: center; /* Alinhamento central do preço */
-  margin: 0.5rem 0; /* Ajusta o espaçamento em torno do preço */
+  font-size: 1.2rem;
+  color: #5b5a5c;
+  font-weight: bold;
+  text-align: center;
+  margin: 0.5rem 0;
 }
 
-/* Parte interna do card */
 .card-body {
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center; /* Isso centraliza o conteúdo horizontalmente */
+  align-items: center;
   height: 100%;
 }
 
-/* Botão do card */
 .btn {
   background: #49176d;
   border: none;
@@ -204,65 +168,126 @@ img{
   border-radius: 20px;
   transition: background-color 0.3s;
   text-decoration: none;
-  margin-top: 1rem;  /* Distância do preço */
+  margin-top: 1rem;
+  width: 140px;
 }
-
-/* Largura fixa dos card */
-.card-body .btn {
-  width: 140px; /* Largura fixa dos botões */
-}
-
-
 
 .btn:hover {
   background: #370d52;
 }
 
-.carousel-item{
+.carousel-item {
   width: 50%;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 
-
-
-/* Responsividade */
-@media (max-width: 768px) {
-  
-
-  .card-img-top .Banner{
-    height: 300px;
-  }
-  
-  /* Altura suficiente para o Banner */
-  .centralizar > .card-img-top.full-width {
-    height: 300px; /* Confirme que a altura é suficiente para o banner */
-  }
-
-  /* Esconder filtro em telas pequenas */
-  .filter-sidebar {
-    display: none;
-  }
-
-  /* Ajustar layout do grid de produtos para telas menores */
-  .product-container {
-    margin-left: 0; /* Remover o espaço da sidebar */
-    padding: 1rem; /* Ajustar padding */
-  }
-
-  /* Ajustar a quantidade de colunas nos cards */
-  .centralizar {
-    grid-template-columns: 1fr; /* Exibir apenas uma coluna de cards */
-    grid-template-areas: 
-      "banner" 
-      "product1"; /* Ajuste para uma coluna em dispositivos móveis */
-  }
-
-  /* Ajustar a largura dos cards */
-  .container-card {
-    width: 100%; /* Garantir que os cards ocupem toda a largura disponível */
-  }
-
-  
+/* Estilo do botão toggle-filter-mobile */
+.toggle-filter-mobile {
+  background: none;
+  border: none;
+  padding: 0;
+  position: fixed;
+  top: 60px; /* Fixando o botão logo abaixo do menu */
+  left: 10px;
+  z-index: 9999;
+  display: none; /* O botão é escondido por padrão */
 }
+
+.toggle-filter-mobile img {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 768px) {
+  .card-img-top .Banner, .centralizar > .card-img-top.full-width {
+    height: 300px; /* Ajusta a altura da imagem no mobile */
+  }
+
+  .filter-sidebar {
+    display: none; /* Esconde a sidebar de filtro em dispositivos móveis */
+  }
+
+  .product-container {
+    margin-left: 0; /* Remove a margem da sidebar no mobile */
+    padding: 1rem;
+  }
+
+  .centralizar {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "banner"
+      "product1";
+  }
+
+  .container-card {
+    width: 100%; /* Garante que os cards ocupem toda a largura */
+  }
+
+  /* Filtro Popup - Mobile */
+  .filter-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .popup-content {
+    background-color: #fff;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1001;
+  }
+
+  .popup-content button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #49176d;
+    cursor: pointer;
+  }
+
+  .popup-content button:hover {
+    color: #370d52;
+  }
+
+  .filter-popup.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .filter-popup.hide {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  
+  .toggle-filter-mobile {
+    display: flex; 
+  }
+}
+
+.card-img-top.full-width {
+  grid-column: span 1; 
+  width: 100%;
+  height: auto;
+}
+

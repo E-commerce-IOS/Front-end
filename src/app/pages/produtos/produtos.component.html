@@ -1,18 +1,19 @@
-   <!-- Imagem que ocupa o lugar de 3 cards -->
-   <div class="card-img-top full-width">
-    <img class="Banner" src="img/BannerProdutos.png" alt="Banner de Produtos">
-  </div>
+<!-- Imagem que ocupa o lugar de 3 cards -->
+<div class="card-img-top full-width">
+  <img class="Banner" src="img/BannerProdutos.png" alt="Banner de Produtos">
+</div>
 
-  <button class="toggle-filter" (click)="toggleFilter()">Filtrar</button>
+<!-- Botão de filtro para mobile -->
+<button class="toggle-filter-mobile" (click)="toggleFilter()"><img src="img/filtro.png" alt=""></button>
 
 <div class="page-container">
-  <!-- Sidebar de filtro -->
-  <div class="filter-sidebar">
+  <!-- Sidebar de filtro (apenas desktop) -->
+  <div class="filter-sidebar" *ngIf="isDesktop">
     <form (submit)="applyFilters(); $event.preventDefault()">
       <div class="filter-option">
         <h3>Filtrar por</h3>
         <hr>
-          <h5>Produtos</h5>
+        <h5>Produtos</h5>
         <label>
           <input type="checkbox" (change)="updateFilter('clothing', $event)">
           Camisetas e Moletom
@@ -41,10 +42,53 @@
           step="10" 
           [value]="priceRange" 
           (input)="onPriceRangeChange($event)">
-          <label for="price-range">Faixa de preço: {{ priceRange | currency }}</label> <br> <br>
+        <label for="price-range">Faixa de preço: {{ priceRange | currency }}</label> <br><br>
       </div>
       <button type="button" class="clear" (click)="clearFilter()">Mostrar Todos</button>
     </form>
+  </div>
+
+  <!-- Popup de filtro (apenas para mobile) -->
+  <div class="filter-popup" *ngIf="isMobile && showPopup">
+    <div class="popup-content">
+      <button (click)="togglePopup()">x</button>
+      <form (submit)="applyFilters(); $event.preventDefault()">
+        <div class="filter-option">
+          <h3>Filtrar por</h3>
+          <hr>
+          <h5>Produtos</h5>
+          <label>
+            <input type="checkbox" (change)="updateFilter('clothing', $event)">
+            Camisetas e Moletom
+          </label>
+        </div>
+        <div class="filter-option">
+          <label>
+            <input type="checkbox" (change)="updateFilter('infantil', $event)">
+            Infantil
+          </label>
+        </div>
+        <div class="filter-option">
+          <label>
+            <input type="checkbox" (change)="updateFilter('accessory', $event)">
+            Acessórios
+          </label>
+          <hr>
+          <h5>Preço</h5>
+        </div>
+        <div>
+          <input 
+            type="range" 
+            id="price-range" 
+            min="0" 
+            max="500" 
+            step="10" 
+            [value]="priceRange" 
+            (input)="onPriceRangeChange($event)">
+          <label for="price-range">Faixa de preço: {{ priceRange | currency }}</label> <br><br>
+        </div>
+      </form>
+    </div>
   </div>
 
   <!-- Container de produtos -->

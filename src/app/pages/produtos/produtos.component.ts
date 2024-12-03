@@ -28,7 +28,12 @@ export class ProdutosComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   selectedFilters: Set<string> = new Set();
-  priceRange: number = 250; // Valor inicial da faixa de preço
+  priceRange: number = 250; 
+
+
+  showPopup: boolean = false;
+  isMobile: boolean = window.innerWidth <= 768; 
+  isDesktop: boolean = !this.isMobile; 
 
   constructor(
     private productService: ProductService,
@@ -38,7 +43,18 @@ export class ProdutosComponent implements OnInit {
 
   ngOnInit(): void {
     this.products = this.productService.getProducts();
-    this.filteredProducts = [...this.products]; // Inicializa com todos os produtos
+    this.filteredProducts = [...this.products]; 
+
+   
+    window.addEventListener('resize', () => {
+      this.isMobile = window.innerWidth <= 768;
+      this.isDesktop = !this.isMobile;
+
+   
+      if (!this.isMobile) {
+        this.showPopup = false;
+      }
+    });
   }
 
   comprar(id: number): void {
@@ -77,37 +93,46 @@ export class ProdutosComponent implements OnInit {
 
   applyFilters(): void {
     this.filteredProducts = this.products.filter(product => {
-      // Verifica se o produto atende aos filtros de categoria
-      const matchesCategory = 
-        this.selectedFilters.size === 0 || 
+   
+      const matchesCategory =
+        this.selectedFilters.size === 0 ||
         (product.type && this.selectedFilters.has(product.type));
-  
-      // Verifica se o preço do produto está dentro do intervalo
+
+    
       const matchesPrice = product.price <= this.priceRange;
-  
+
       return matchesCategory && matchesPrice;
     });
   }
-  
 
   onPriceRangeChange(event: Event): void {
     const target = event.target as HTMLInputElement;
     if (target) {
-      this.priceRange = +target.value; // Converte o valor para um número
-      console.log('Faixa de preço atual:', this.priceRange); // Debug para verificar a faixa de preço
-      this.applyFilters(); // Aplica os filtros após a mudança
+      this.priceRange = +target.value; 
+      console.log('Faixa de preço atual:', this.priceRange); 
+      this.applyFilters(); 
     }
   }
 
   clearFilter(): void {
     this.selectedFilters.clear();
-    this.priceRange = 500; // Resetar faixa de preço para o valor inicial
-    this.filteredProducts = [...this.products]; // Mostra todos os produtos novamente
+    this.priceRange = 500; 
+    this.filteredProducts = [...this.products]; 
   }
 
-  showFilter: boolean = false;
+  togglePopup(): void {
+    this.showPopup = !this.showPopup;
+    console.log("Popup toggled, showPopup:", this.showPopup); 
+  }
 
+ 
   toggleFilter() {
-    this.showFilter = !this.showFilter;
-  } 
+    console.log("Toggle Filter clicked");
+
+    if (this.isMobile) {
+      this.togglePopup(); 
+    } else {
+      this.showPopup = false; 
+  }
+  }
 }
