@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+
+
+}
+
+.container {
+    width: 100%;               /* Usando 100% da largura disponível */
+    height: 300px;             /* Altura da tela */
+    box-sizing: border-box;    /* Certifique-se de que padding e borda não afetem a largura */
+}
+
+.faixa {
+    display: flex;
+    align-items: center;             /* Centraliza verticalmente os itens */
+    justify-items: center;           /* Centraliza horizontalmente os itens */
+    width: 100vw;                    /* Largura total da tela */
+    height: 120%;                     /* Altura da faixa */
+    background-color: #49176d;       /* Cor de fundo da faixa */
+    padding: 1rem;                   /* Adiciona espaçamento interno */
+    box-sizing: border-box;          /* Inclui padding no cálculo da largura/altura */
+    text-align: left;
+    margin-top: 12%;
+}
+
+.texto{
+    position: absolute;
+    color: white;                    /* Cor do texto */
+    font-size: 1.5rem;               /* Tamanho da fonte */
+    text-align: left;                /* Alinha o texto à esquerda */
+    padding: 1rem;                   /* Adiciona espaçamento interno */
+    max-width: 80%;                  /* Define uma largura máxima */
+    line-height: 1.6;                /* Ajusta o espaçamento entre linhas */
+    display: grid;                   /* Define o layout em grid */
+    grid-template-columns: 1fr 1fr;  /* Divide em duas colunas iguais */
+    margin-left: 6%;
+}
+
+.imagem {
+    position: absolute;
+    max-width: 40%;
+    height: auto;
+    max-height: 80%;
+    border-radius: 60px;
+    margin-left: 10%; /* Adicionando margem à esquerda para deslocar a imagem */
+}
+
+
+
+
+.container2 {
+    width: 100%;               /* Usando 100% da largura disponível */
+    height: 550px;             /* Altura da tela */
+    box-sizing: border-box;    /* Certifique-se de que padding e borda não afetem a largura */
+    margin-top: 20%;
+}
+
+
+.faixa2 {
+    display: flex;
+    align-items: center;             /* Centraliza verticalmente os itens */
+    justify-items: center;           /* Centraliza horizontalmente os itens */
+    width: 100vw;                    /* Largura total da tela */
+    height: 80%;                     /* Altura da faixa */
+    background-color: #49176d;       /* Cor de fundo da faixa */
+    padding: 1rem;                   /* Adiciona espaçamento interno */
+    box-sizing: border-box;          /* Inclui padding no cálculo da largura/altura */
+    text-align: right;
+    margin-top: 12%;
+}
+
+.texto2{
+    position: absolute;
+    color: white;                    /* Cor do texto */
+    font-size: 1.5rem;               /* Tamanho da fonte */
+    text-align: right;                /* Alinha o texto à esquerda */
+    padding: 1rem;                   /* Adiciona espaçamento interno */
+    max-width: 80%;                  /* Define uma largura máxima */
+    line-height: 1.6;                /* Ajusta o espaçamento entre linhas */
+    display: grid;                   /* Define o layout em grid */
+    grid-template-columns: 1fr 1fr;  /* Divide em duas colunas iguais */
+    margin-left: 6%;
+}
+
+.imagem2 {
+    position: absolute;
+    max-width: 40%;
+    height: auto;
+    max-height: 80%;
+    border-radius: 60px;
+    margin-left: 60%; /* Adicionando margem à esquerda para deslocar a imagem */
+}
+
+
+.container3 {
+    display: flex;
+    flex-direction: column; /* Organiza os elementos em coluna */
+    align-items: center; /* Alinha os itens no centro horizontalmente */
+    text-align: center; /* Alinha o texto no centro */
+}
+
+.titulo {
+    font-size: 2rem; /* Ajuste o tamanho da fonte do título */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+.texto {
+    font-size: 1.2rem; /* Ajuste o tamanho da fonte do texto */
+    margin-bottom: 20px; /* Espaço abaixo do texto */
+}
+
+.imagem3 {
+    max-width: 100%; /* Garante que a imagem se ajuste ao tamanho da tela */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 60px;
+}
+

@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Nunito&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
+
+img {
+  width: 150px;      
+  height: 150px;     
+  border-radius: 100%; 
+  margin-top: -60px;
+}
+
+.col{
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin-bottom: 10%;
+  margin-top: 10%;
+  gap: 4px; /* Adiciona espaço entre as colunas */
+}
+
+.card{
+  box-shadow: 6px 6px 6px 6px rgba(85, 3, 81, 0.1);
+}
+
+/* Esconde os inputs de radio */
+[type="radio"] {
+  display: none; /* Remove visualização dos inputs */
+}
+
+/* Estilo das estrelas */
+.row .estrela {
+  font-size: 40px;
+  color: #7c3866;
+  margin-top: -4%;
+}
+
+.card-title {
+  text-align: center;
+}
+
+.card-img-top {
+  display: block; /* Faz a imagem se comportar como um bloco */
+  margin-left: auto;         
+  margin-right: auto;        
+}
+
+.card-footer{
+  background-color: #f8dff1;
+}
+
+.estrelas {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+p{
+  text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 620px) {
+
+.col{
+  margin-top: 24%;
+}
+
+img {
+  width: 120px; 
+  height: 120px;
+}
+
+}
+
+@media (max-width: 920px) {
+
+  .col{
+    margin-top: 24%;
+  }
+
+}

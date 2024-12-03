@@ -1,0 +1,45 @@
+<div class="body">
+    <div id="container-login">
+        <div id="home">
+            <a href="/">
+              <img src="img/home.png" alt="Logo Home">
+              <!-- <p id="paragrafo">Home</p> -->
+            </a>
+        </div>
+        <h1> Faça seu Login! </h1>
+    </div>
+    
+    <div id="form">
+    <form>
+        <input type="text"  name="nomes" id="nomes" placeholder="E-mail" required>
+        <input type="password" name="senha" id="senha" placeholder="Senha" required>
+        <div class="checkbox-container">
+            <input type="checkbox" id="lembrar" class="lembrar" name="lembrar">
+            <label for="lembrar">Lembrar-me</label>
+        </div>
+            
+    </form>
+    </div>
+    
+    
+    
+    <div id="centralizador">
+    <button type="submit" onclick="logar()" value="Entrar" id="btn-login">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Login
+        </button>
+    </div>
+    
+    <div>
+        <a routerLink="/" target="_blank"><b>ESQUECEU SUA SENHA?</b></a>
+        <p>OU</p>
+        <a routerLink="/cadastro" target="_blank"><b id="vermelho">NÃO TEM CONTA?</b></a>
+    </div>
+    
+</div>
+
+<router-outlet></router-outlet>
+  
