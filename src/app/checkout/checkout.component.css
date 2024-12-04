@@ -1,4 +1,4 @@
-.checkout-container {
+.checkout-container { 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -170,13 +170,14 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .next-btn,
 .prev-btn {
-    padding: 10px 20px;
+    padding: 8px 16px; /* Reduzido para botões menores */
     border: none;
     border-radius: 5px;
     background-color: #7e57c2;
     color: #fff;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
+    font-size: 0.9rem; /* Tamanho de fonte menor */
 }
 
 .next-btn:hover,
@@ -189,6 +190,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .prev-btn:active {
     transform: scale(0.95);
 }
+
+
+
 
 .step-container img {
     max-width: 100%;
@@ -207,6 +211,17 @@ input[type="range"]::-webkit-slider-thumb:hover {
     .payment-options,
     .card-details-form {
         flex: 1 1 100%;
+    }
+
+    .button-container {
+        gap: 15px; /* Ajuste de espaçamento */
+        flex-direction: column; /* Botões empilhados */
+    }
+
+    .next-btn,
+    .prev-btn {
+        width: 100%; /* Botões ocupam a largura total */
+        min-width: 0; /* Remove a restrição de largura mínima */
     }
 }
 

@@ -1,8 +1,8 @@
 <div class="checkout-container">
-    <!-- Controle de progresso do checkout -->
+
     <input type="range" min="1" max="4" [(ngModel)]="currentStep" class="progress-bar"/>
   
-    <!-- Etapa 1: Confirmação dos Produtos e Dados Pessoais -->
+    
     <div *ngIf="currentStep === 1" class="step-container">
       <h2>Etapa 1: Confirmação dos Produtos e Dados Pessoais</h2>
       <div class="step-content">
