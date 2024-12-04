@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-avaliacao',
   standalone: true,
-  imports: [RouterLink, CommonModule, RouterOutlet],
+  imports: [ CommonModule],
   templateUrl: './avaliacao.component.html',
   styleUrls: ['./avaliacao.component.css']
 })
-export class AvaliacaoComponent {
-  
+export class AvaliacaoComponent implements OnInit {
   slides = [
     { img: 'img/05.JPG', alt: 'Imagem de uma mulher branca', name: 'Allana Lu', date: 'Julho 5, 2023', comment: 'Ótimo atendimento, chegou super rápido.' },
     { img: 'img/01.JPG', alt: 'Imagem de uma mulher negra', name: 'Zuri', date: 'Agosto 18, 2023', comment: 'Desde o primeiro contato, fui tratada com muita atenção e profissionalismo.' },
@@ -23,14 +23,20 @@ export class AvaliacaoComponent {
   currentIndex = 0;
   isMobile: boolean = false;
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   ngOnInit() {
     this.checkIfMobile();
-    window.addEventListener('resize', this.checkIfMobile.bind(this));
+    if (isPlatformBrowser(this.platformId)) {
+      window.addEventListener('resize', this.checkIfMobile.bind(this));
+    }
   }
 
   // Detecta se o dispositivo é móvel ou não
   checkIfMobile() {
-    this.isMobile = window.innerWidth <= 768;
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobile = window.innerWidth <= 768;
+    }
   }
 
   get transform() {

@@ -5,7 +5,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, CommonModule],
+  imports: [CommonModule],
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.css'
 })
