@@ -3,7 +3,7 @@
 
 
 /* Container principal */
-.container-animacao {
+.container-animacao, .mobile-container {
   text-align: center;
   margin: 0;
   padding: 0;
@@ -11,19 +11,24 @@
   justify-content: center;
   align-items: center;
   height: 100vh; /* Ocupa 100% da altura da viewport */
-  background-color: #49176d;
+  background-color: #49176d; /* Fundo roxo */
   position: relative;
   overflow: hidden;
+  padding: 0 1rem; /* Adiciona espaçamento nas laterais */
+  box-sizing: border-box; /* Garante que o padding não afete a largura total */
 }
 
 /* Texto animado */
 .word {
   font-family: 'Titan One';
-  font-size: 8rem;
+  font-size: 8rem; /* Tamanho padrão */
   color: white;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 0.5rem;
+  flex-wrap: wrap; /* Permite a quebra de linha */
+  white-space: normal; /* Garante que o texto quebre em múltiplas linhas */
 }
 
 .letter {
@@ -117,7 +122,7 @@
   padding: 0;
 }
 
-
+/* Canto esquerdo e direito */
 .canto-esquerdo {
   position: absolute;
   bottom: -7rem;
@@ -162,33 +167,72 @@
 
 /* Responsividade */
 @media (max-width: 1024px) {
-  .word {
-    font-size: 6rem;
+  .container-animacao {
+    background-color: #49176d; /* Garante que o fundo continue roxo */
+    padding: 0 2rem; /* Aumenta o padding nas laterais para evitar cortes */
   }
+
+  .word {
+    font-size: 6rem; /* Ajuste para tablets */
+    flex-direction: column; /* Alinha as palavras em coluna */
+    text-align: center; /* Centraliza o texto */
+  }
+
+  .letter {
+    display: inline-block;
+    margin-bottom: 0.5rem; /* Adiciona espaçamento entre as letras */
+  }
+
   .canto-esquerdo, .canto-direito {
     width: 15rem;
+  }
+
+  .bichinho-piscando {
+    width: 5rem; /* Ajuste para dispositivos maiores */
   }
 }
 
 @media (max-width: 768px) {
-  .word {
-    font-size: 4rem;
+  .container-animacao {
+    background-color: #49176d; /* Garante que o fundo continue roxo */
+    padding: 0 2rem; /* Adiciona espaçamento nas laterais */
   }
+
+  .word {
+    font-size: 5rem; /* Ajuste para dispositivos menores */
+    flex-direction: column; /* Coloca as palavras em uma coluna */
+    align-items: center; /* Centraliza as palavras */
+  }
+
+  .letter {
+    display: inline-block;
+    margin-bottom: 0.5rem; /* Adiciona espaçamento entre as letras */
+  }
+
   .canto-esquerdo, .canto-direito {
     width: 12rem;
   }
+
   .bichinho-piscando {
     width: 4rem;
   }
 }
 
 @media (max-width: 480px) {
-  .word {
-    font-size: 3rem;
+  .container-animacao {
+    background-color: #49176d; /* Garante que o fundo continue roxo */
+    padding: 0 1rem; /* Ajuste para dispositivos menores */
   }
+
+  .word {
+    font-size: 4rem; /* Ajuste para dispositivos pequenos */
+    flex-direction: column; /* Alinha as palavras em coluna */
+  }
+
   .canto-esquerdo, .canto-direito {
     width: 10rem;
   }
+
   .banner-content {
     font-size: 0.8em;
   }

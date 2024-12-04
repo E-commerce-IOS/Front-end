@@ -1,20 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-animacao',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './animacao.component.html',
-  styleUrl: './animacao.component.css'
+  styleUrls: ['./animacao.component.css']
 })
 export class AnimacaoComponent implements OnInit {
-  isActive = false; // Estado inicial (invisível)
+  isActive = false;
+  isMobile = false;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   ngOnInit(): void {
-    // Ativa a animação após 0.5 segundos
-    setTimeout(() => {
-      this.isActive = true;
-    }, 500);
+    if (isPlatformBrowser(this.platformId)) {
+      // Só executa essa parte no navegador
+      setTimeout(() => (this.isActive = true), 500);
+      this.isMobile = window.innerWidth <= 768;
+    }
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobile = window.innerWidth <= 768;
+    }
   }
 }
-
