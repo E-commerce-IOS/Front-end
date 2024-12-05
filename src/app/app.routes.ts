@@ -9,6 +9,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { DetalhesProdutoComponent } from './detalhes-produto/detalhes-produto.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ContatoComponent } from './contato/contato.component';
 
 
 export const routes: Routes = [
@@ -21,7 +22,8 @@ export const routes: Routes = [
   { path: 'cadastro', component: CadastroComponent},
   { path: 'avaliacao', component: AvaliacaoComponent},
   { path: 'products/:id', component: DetalhesProdutoComponent },
-  { path: 'checkout', component: CheckoutComponent}
+  { path: 'checkout', component: CheckoutComponent},
+  { path: 'contato', component: ContatoComponent}
   
 ];
 

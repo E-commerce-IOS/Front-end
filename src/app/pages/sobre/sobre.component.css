@@ -1,86 +1,83 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Nunito&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
+/* Estilo para o corpo e reset básico */
+body {
     margin: 0;
-    padding: 0;
-
-
+    font-family: Arial, sans-serif;
 }
 
-.container {
-    width: 100%;               /* Usando 100% da largura disponível */
-    height: 300px;             /* Altura da tela */
-    box-sizing: border-box;    /* Certifique-se de que padding e borda não afetem a largura */
-}
-
-.faixa {
+/* Faixa da parte que fala sobre o Ios */
+.sobreOios {
     display: flex;
-    align-items: center;             /* Centraliza verticalmente os itens */
-    justify-items: center;           /* Centraliza horizontalmente os itens */
-    width: 100vw;                    /* Largura total da tela */
-    height: 120%;                     /* Altura da faixa */
-    background-color: #49176d;       /* Cor de fundo da faixa */
-    padding: 1rem;                   /* Adiciona espaçamento interno */
-    box-sizing: border-box;          /* Inclui padding no cálculo da largura/altura */
+    align-items: center;             
+    justify-items: center;           
+    width: 100%;                   
+    height: 500px;                     
+    background-color: #49176d;      
+    padding: 1rem;                   
+    box-sizing: border-box;          
     text-align: left;
     margin-top: 12%;
+    color: aliceblue;
+    margin-bottom: 16%;
 }
 
-.texto{
-    position: absolute;
-    color: white;                    /* Cor do texto */
-    font-size: 1.5rem;               /* Tamanho da fonte */
-    text-align: left;                /* Alinha o texto à esquerda */
-    padding: 1rem;                   /* Adiciona espaçamento interno */
-    max-width: 80%;                  /* Define uma largura máxima */
-    line-height: 1.6;                /* Ajusta o espaçamento entre linhas */
-    display: grid;                   /* Define o layout em grid */
-    grid-template-columns: 1fr 1fr;  /* Divide em duas colunas iguais */
-    margin-left: 6%;
+section {
+    background-color: #d1a8ee; 
+    padding: 6px; 
+  }
+
+/* Textoque fala sobre o Ios */
+.textoSobreIos{
+    width: 50%;
+    font-size: 22px;
+    margin-left: 42%;
+    text-align: justify; 
 }
 
-.imagem {
+/* Estilos gerais para o card */
+.card {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ddd; 
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 100%;
+    margin-bottom: 80px;
+}
+
+/* Textos dos Card */
+.conteudo {
+    display: flex;
+    align-items: center;             
+    justify-items: center;           
+    width: 100vw;                   
+    height: 550px;                    
+    background-color: #49176d;       
+    padding: 1.4rem;                   
+    box-sizing: border-box;       
+    text-align: left;
+    margin-top: 12%;
+    color: aliceblue;
+    margin-bottom: 200px;
+}
+
+/* Texto que fala da loja IOS */
+.textoLojaIos{
+    width: 50%;
+    font-size: 22px;
+    margin-left: 8%;
+    text-align: justify; 
+}
+
+/* Imagem da fachada do IOS */
+.fachadaIos {
     position: absolute;
     max-width: 40%;
     height: auto;
     max-height: 80%;
     border-radius: 60px;
-    margin-left: 10%; /* Adicionando margem à esquerda para deslocar a imagem */
-}
-
-
-
-
-.container2 {
-    width: 100%;               /* Usando 100% da largura disponível */
-    height: 550px;             /* Altura da tela */
-    box-sizing: border-box;    /* Certifique-se de que padding e borda não afetem a largura */
-    margin-top: 20%;
-}
-
-
-.faixa2 {
-    display: flex;
-    align-items: center;             /* Centraliza verticalmente os itens */
-    justify-items: center;           /* Centraliza horizontalmente os itens */
-    width: 100vw;                    /* Largura total da tela */
-    height: 80%;                     /* Altura da faixa */
-    background-color: #49176d;       /* Cor de fundo da faixa */
-    padding: 1rem;                   /* Adiciona espaçamento interno */
-    box-sizing: border-box;          /* Inclui padding no cálculo da largura/altura */
-    text-align: right;
-    margin-top: 12%;
-}
-
-.texto2{
-    position: absolute;
-    color: white;                    /* Cor do texto */
-    font-size: 1.5rem;               /* Tamanho da fonte */
-    text-align: right;                /* Alinha o texto à esquerda */
-    padding: 1rem;                   /* Adiciona espaçamento interno */
-    max-width: 80%;                  /* Define uma largura máxima */
-    line-height: 1.6;                /* Ajusta o espaçamento entre linhas */
-    display: grid;                   /* Define o layout em grid */
-    grid-template-columns: 1fr 1fr;  /* Divide em duas colunas iguais */
-    margin-left: 6%;
+    left: 8%;
 }
 
 .imagem2 {
@@ -89,30 +86,154 @@
     height: auto;
     max-height: 80%;
     border-radius: 60px;
-    margin-left: 60%; /* Adicionando margem à esquerda para deslocar a imagem */
+    right: 8%;
+}
+
+h2{
+    padding: 0.4rem;
+    color: #FFA500;
+    border-radius: 30px;
+}
+
+h1{
+    padding: 0.4rem;
+    color: #49176d;
+    background: #FFA500;
+    width: 40%;
+    border-radius: 30px;
+    margin-top: 60px;
 }
 
 
-.container3 {
-    display: flex;
-    flex-direction: column; /* Organiza os elementos em coluna */
-    align-items: center; /* Alinha os itens no centro horizontalmente */
-    text-align: center; /* Alinha o texto no centro */
+/* Estilo para a seção personalizada  do seja um parceiro*/
+.sejaUmParceiro {
+    background-color: #b8b5b5; 
+    padding: 20px; 
+    text-align: center; 
+    position: relative; 
 }
 
-.titulo {
-    font-size: 2rem; /* Ajuste o tamanho da fonte do título */
-    margin-bottom: 20px; /* Espaço abaixo do título */
+/* Estilo para a imagem */
+.imagemParceiro {
+    width: 70%; 
+    height: auto; 
+    display: block; 
+    margin: auto;
+    margin-bottom: 60px;
+    margin-top: 2px;
+    border-radius: 6%;
+    box-shadow: 6px 6px 6px 6px rgba(85, 3, 81, 0.1);
 }
 
-.texto {
-    font-size: 1.2rem; /* Ajuste o tamanho da fonte do texto */
-    margin-bottom: 20px; /* Espaço abaixo do texto */
+/* Estilo para o conteúdo */
+.textoParceiro {
+    position: relative; 
+    padding: 30px;
+    border-radius: 5px; 
+    display: inline-block; 
+    font-size: 22px;
+    color: #000000;
+    letter-spacing: 0.1px;
+    text-align: justify; 
 }
 
-.imagem3 {
-    max-width: 100%; /* Garante que a imagem se ajuste ao tamanho da tela */
-    height: auto; /* Mantém a proporção da imagem */
-    border-radius: 60px;
-}
 
+/* Modelo para mobile */
+
+@media screen and (max-width: 768px) {
+
+    section {
+        background-color: #d1a8ee; 
+        padding: 2px; 
+        margin-top: 10%;
+    }
+
+    .sobreOios, .conteudo, .sejaUmParceiro {
+        flex-direction: column; /* Alinhar texto e imagem em coluna */
+        text-align: center;     
+        height: auto;         
+    }
+
+    .textoSobreIos, .textoLojaIos, .textoParceiro {
+        width: 100%;            
+        margin: 0 auto 1rem;    /* Centralizar e adicionar espaço inferior */
+        font-size: 16px;       
+    }
+
+    .fachadaIos, .imagem2, .imagemParceiro {
+        position: static;
+        max-width: 100%;        
+        height: auto;           
+        margin: 0 auto 1rem;    /* Centralizar e adicionar espaço inferior */
+        border-radius: 20px;   
+        max-height: 450px; /* Ajuste baseado no design */
+        object-fit: cover; /* Ajusta a imagem sem distorção */ 
+    }
+
+        /* Titutlo da parte seja um parceiro */
+        h1{
+            width: 100%; 
+            padding: 1rem; 
+            margin: 0; 
+            border-radius: 20px; 
+            font-size: 1.7rem;
+        }
+
+
+    /* Diminui a margem entre os card*/
+    .sobreOios, .conteudo, .sejaUmParceiro {
+        margin-top: 6%;   
+        margin-bottom: 6%; 
+    }
+
+    .imagemParceiro{
+        width: 100%; 
+        margin: 0; 
+        border-radius: 20px; 
+    }
+
+  }
+  
+  /* Ajustes para telas muito pequenas (smartphones) */
+  @media screen and (max-width: 480px) {
+
+    section {
+        background-color: #d1a8ee; 
+        padding: 2px; 
+    }
+
+    .sobreOios, .conteudo, .sejaUmParceiro {
+        flex-direction: column; /* Alinhar texto e imagem em coluna */
+        text-align: center;     
+        height: auto;          
+    }
+
+    .textoSobreIos, .textoLojaIos, .textoParceiro {
+        width: 100%;           
+        margin: 0 auto 1rem;    /* Centralizar e adicionar espaço inferior */
+        font-size: 16px;       
+    }
+
+    .fachadaIos, .imagem2, .imagemParceiro {
+        position: static;
+        max-width: 100%;       
+        height: auto;           
+        margin: 0 auto 1rem;    /* Centralizar e adicionar espaço inferior */
+        border-radius: 20px;   
+        max-height: 350px; /* Ajuste baseado no design */
+        object-fit: cover; /* Ajusta a imagem sem distorção */ 
+    }
+
+     /* Diminui a margem entre os card*/
+    .sobreOios, .conteudo, .sejaUmParceiro {
+        margin-top: 6%;   
+        margin-bottom: 6%; 
+    }
+
+    .imagemParceiro{
+        width: 100%; 
+        margin: 0; 
+        border-radius: 20px;  
+    }
+
+  }

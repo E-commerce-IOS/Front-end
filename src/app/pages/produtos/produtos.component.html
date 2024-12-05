@@ -1,9 +1,8 @@
-<!-- Imagem que ocupa o lugar de 3 cards -->
-<div class="card-img-top full-width">
-  <img class="Banner" src="img/BannerProdutos.png" alt="Banner de Produtos">
+<div class="card mb-3  shadow-sm rounded p-3">
+  <img class="card-img-top" src="img/banner-produtos.png" alt="Card image cap">
 </div>
 
-<!-- Botão de filtro para mobile -->
+  <!-- Botão de filtro para mobile -->
 <button class="toggle-filter-mobile" (click)="toggleFilter()"><img src="img/filtro.png" alt=""></button>
 
 <div class="page-container">
@@ -95,9 +94,9 @@
   <div class="product-container">
     <div class="centralizar">
       <div *ngFor="let product of filteredProducts" class="container-card">
-        <div class="card">
+        <div class="card-product">
           <a [routerLink]="['/products', product.id]">
-            <img class="card-img-top" [src]="product.image" [alt]="product.name">
+            <img class="card-img-top-product" [src]="product.image" [alt]="product.name">
           </a>
           <div class="card-body">
             <h5 class="card-title">{{ product.name }}</h5>

@@ -3,7 +3,7 @@ import { CarrinhoService } from '../../../src/app/services/carrinho.service';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
-
+import { WindowService } from '../../../src/app/services/window.service'; // Adicionada importação
 
 interface CartItem {
   id: number;
@@ -29,16 +29,25 @@ export class CarrinhoComponent implements OnInit {
 
   constructor(
     private carrinhoService: CarrinhoService,
-    private router: Router // Injeção do Router
+    private router: Router, // Injeção do Router
+    private windowService: WindowService // Adicionada injeção do WindowService
   ) {}
+
   ngOnInit(): void {
     this.items$ = this.carrinhoService.items$;
     this.isOpen$ = this.carrinhoService.isOpen$;
 
-   
     this.carrinhoService.items$.subscribe(() => {
       this.updateTotal();
     });
+  }
+
+  // Método exemplo para mostrar como utilizar o WindowService
+  checkWindowWidth(): void {
+    const nativeWindow = this.windowService.nativeWindow;
+    if (nativeWindow) {
+      console.log('A largura da janela é:', nativeWindow.innerWidth);
+    }
   }
 
   updateTotal(): void {
@@ -87,6 +96,4 @@ export class CarrinhoComponent implements OnInit {
       this.carrinhoService.updateSize(index, size);
     }
   }
-
-
 }

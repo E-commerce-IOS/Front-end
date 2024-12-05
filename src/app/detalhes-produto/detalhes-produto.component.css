@@ -6,7 +6,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Garantir que ocupe toda a altura da página */
     text-align: center;
 }
 
@@ -17,7 +16,8 @@
     align-items: center;
     gap: 40px; /* Espaço entre imagem e informações */
     flex-wrap: wrap;
-    max-width: 1000px; /* Limita a largura do conteúdo */
+  
+    margin: 0 auto;
 }
 
 /* Imagem do Produto */
@@ -37,15 +37,15 @@
     padding: 15px; /* Espaçamento interno para dar destaque */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para destaque */
     overflow: hidden; /* Garante que a lupa não ultrapasse os limites do container */
-  }
-  
-  .image-container:hover {
+}
+
+.image-container:hover {
     background-color: #e0e0e0; /* Cor de fundo mais escura no hover */
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Aumenta a sombra no hover para dar mais destaque */
-  }
-  
-  /* Lupa */
-  .zoom-lens {
+}
+
+/* Lupa */
+.zoom-lens {
     position: absolute;
     width: 100px;
     height: 100px;
@@ -54,15 +54,15 @@
     pointer-events: none;
     display: none; /* Escondida inicialmente */
     border: 3px solid #6c63ff; /* Borda roxa para a lupa */
-  }
-  
-  /* Imagem principal */
-  .main-image {
+}
+
+/* Imagem principal */
+.main-image {
     max-width: 100%;
     transition: transform 0.2s ease; /* Suaviza a transição ao aplicar o zoom */
     border-radius: 8px;
-  }
-  
+}
+
 /* Área de zoom - deve ser oculta inicialmente */
 .zoom-lens {
     position: absolute;
@@ -192,3 +192,66 @@
 }
 
 
+@media (max-width: 768px) {
+
+    .main-image {
+        max-width: 30%;
+      
+    }
+
+    .product-details {
+        text-align: start;
+        max-width: 40%;
+    }
+
+    .product-details h2 {
+        font-size: 1.5rem;
+    }
+
+    .price {
+        font-size: 1.5rem;
+    }
+
+    .size-buttons, .color-buttons {
+        justify-content: start;
+    }
+
+    .actions {
+        align-items: start;
+        gap: 15px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .product-page {
+        padding: 10px;
+    }
+
+    .product-container {
+        gap: 15px;
+    }
+
+    .product-details h2 {
+        font-size: 1.2rem;
+    }
+
+    .price {
+        font-size: 1.2rem;
+    }
+
+    .size-button {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .color-button {
+        width: 30px;
+        height: 30px;
+    }
+
+    .buy-button, .back-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}

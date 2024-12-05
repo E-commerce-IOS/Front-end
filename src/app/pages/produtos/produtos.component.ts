@@ -4,7 +4,8 @@ import { RouterModule, Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CarrinhoService } from '../../services/carrinho.service';
 import { FormsModule } from '@angular/forms';
-import { FooterComponent } from "../../footer/footer.component"; // Import FormsModule
+import { FooterComponent } from "../../footer/footer.component";
+import { WindowService } from '../../services/window.service';
 
 interface Product {
   image: string;
@@ -22,43 +23,54 @@ interface Product {
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule, FooterComponent],
   templateUrl: './produtos.component.html',
-  styleUrls: ['./produtos.component.css']
+  styleUrls: ['./produtos.component.css'],
 })
 export class ProdutosComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   selectedFilters: Set<string> = new Set();
-  priceRange: number = 250; 
-
+  priceRange: number = 250;
 
   showPopup: boolean = false;
-  isMobile: boolean = window.innerWidth <= 768; 
-  isDesktop: boolean = !this.isMobile; 
+  isMobile: boolean = false;
+  isDesktop: boolean = false;
 
   constructor(
     private productService: ProductService,
     private carrinhoService: CarrinhoService,
-    private router: Router
+    private router: Router,
+    private windowService: WindowService // Injeta o WindowService
   ) {}
 
   ngOnInit(): void {
     this.products = this.productService.getProducts();
-    this.filteredProducts = [...this.products]; 
+    this.filteredProducts = [...this.products];
 
-   
-    window.addEventListener('resize', () => {
-      this.isMobile = window.innerWidth <= 768;
+    // Atualiza o tipo de dispositivo baseado no tamanho da janela
+    this.updateDeviceType();
+
+    // Adiciona listener de resize se o objeto `window` estiver disponível
+    const nativeWindow = this.windowService.nativeWindow;
+    if (nativeWindow) {
+      nativeWindow.addEventListener('resize', () => this.updateDeviceType());
+    }
+  }
+
+  private updateDeviceType(): void {
+    const nativeWindow = this.windowService.nativeWindow;
+    if (nativeWindow) {
+      this.isMobile = nativeWindow.innerWidth <= 768;
       this.isDesktop = !this.isMobile;
 
-   
       if (!this.isMobile) {
         this.showPopup = false;
       }
-    });
+    }
   }
 
+  // Restante do código permanece o mesmo
   comprar(id: number): void {
-    const produto = this.products.find(p => p.id === id);
+    const produto = this.products.find((p) => p.id === id);
     if (produto) {
       const produtoParaCarrinho = {
         id: produto.id,
@@ -92,13 +104,11 @@ export class ProdutosComponent implements OnInit {
   }
 
   applyFilters(): void {
-    this.filteredProducts = this.products.filter(product => {
-   
+    this.filteredProducts = this.products.filter((product) => {
       const matchesCategory =
         this.selectedFilters.size === 0 ||
         (product.type && this.selectedFilters.has(product.type));
 
-    
       const matchesPrice = product.price <= this.priceRange;
 
       return matchesCategory && matchesPrice;
@@ -108,31 +118,29 @@ export class ProdutosComponent implements OnInit {
   onPriceRangeChange(event: Event): void {
     const target = event.target as HTMLInputElement;
     if (target) {
-      this.priceRange = +target.value; 
-      console.log('Faixa de preço atual:', this.priceRange); 
-      this.applyFilters(); 
+      this.priceRange = +target.value;
+      console.log('Faixa de preço atual:', this.priceRange);
+      this.applyFilters();
     }
   }
 
   clearFilter(): void {
     this.selectedFilters.clear();
-    this.priceRange = 500; 
-    this.filteredProducts = [...this.products]; 
+    this.priceRange = 500;
+    this.filteredProducts = [...this.products];
   }
 
   togglePopup(): void {
     this.showPopup = !this.showPopup;
-    console.log("Popup toggled, showPopup:", this.showPopup); 
+    console.log('Popup toggled, showPopup:', this.showPopup);
   }
 
- 
-  toggleFilter() {
-    console.log("Toggle Filter clicked");
-
+  toggleFilter(): void {
+    console.log('Toggle Filter clicked');
     if (this.isMobile) {
-      this.togglePopup(); 
+      this.togglePopup();
     } else {
-      this.showPopup = false; 
-  }
+      this.showPopup = false;
+    }
   }
 }
