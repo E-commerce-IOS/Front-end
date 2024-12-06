@@ -41,6 +41,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .step-container {
     width: 100%;
+    display: flex;
+    flex-direction: column; 
     max-width: 900px;
     background-color: #fff;
     border: 2px solid #7e57c2;
@@ -168,6 +170,20 @@ input[type="range"]::-webkit-slider-thumb:hover {
     gap: 50%; /* Espaçamento aumentado */
 }
 
+input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: #7b1fa2; /* Destaque em roxo */
+    box-shadow: 0 0 5px rgba(123, 31, 162, 0.5);
+  }
+
 .next-btn,
 .prev-btn {
     padding: 8px 16px; /* Reduzido para botões menores */
@@ -190,6 +206,16 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .prev-btn:active {
     transform: scale(0.95);
 }
+
+div p {
+    font-size: 1rem;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  div p strong {
+    color: #4a148c; /* Destaque para valores importantes */
+  }
 
 
 
