@@ -1,73 +1,54 @@
 import { Component } from '@angular/core';
 import { CarrinhoService } from '../../app/services/carrinho.service';
+import { Item } from '../models/item.model';
+import { ItemService } from '../services/item.service';
+import {  NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-lancamento',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './lancamento.component.html',
   styleUrl: './lancamento.component.css'
 })
 export class LancamentoComponent {
-  hovered: boolean[] = [false, false, false, false];
+  hovered: number | null = null;
 
-  onHover(index: number, state: boolean) {
-    this.hovered[index] = state;
+  onHover(index: number, isHovered: boolean) {
+    this.hovered = isHovered ? index : null;
   }
   
+  items: Item[] = []
    
-   produtos = [
-    {
-      id: 1,
-      name: 'Moletom Protheus',
-      price: 335,
-      type: 'clothing', 
-      image: 'img/moletom-protheus.png', 
-      size: 'M', 
-      selectedSize: ''
-    },
-    {
-      id: 2,
-      name: 'Pin Onça Preta',
-      price: 10,
-      type: 'accessory', 
-      image: 'img/pin-protheus.png', 
-    },
-    {
-      id: 3,
-      name: 'Camiseta Protheus',
-      price: 120,
-      type: 'clothing', 
-      image: 'path/to/camiseta.jpg', 
-      size: 'P', 
-    },
-    {
-      id: 4,
-      name: 'Cartela de Adesivos',
-      price: 10,
-      type: 'accessory', 
-      image: 'img/cartela-adesivo.png', 
-    },
-  ];
 
-  
-  selectedSize: string = 'M';
+  constructor(private carrinhoService: CarrinhoService, private itemService: ItemService) {
+   this.obterProdutosCadastradosLancamentos()
+  }
 
-  constructor(private carrinhoService: CarrinhoService) {}
+  obterProdutosCadastradosLancamentos() {
+    this.itemService.obterProdutos()
+        .subscribe(items => {
+           const filteredItems = items.filter(item => item.produto.lancamento === true)
+            const uniqueProducts = filteredItems.filter((item, index, self) =>
+                index === self.findIndex((t) => (
+                    t.produto.idProduto === item.produto.idProduto
+                ))
+            );
+            this.items = uniqueProducts;
+        });
+}
 
-  comprar(id: number): void {
+  comprar(id: number | undefined): void {
     
-    const produto = this.produtos.find(p => p.id === id);
+    const item = this.items.find(i => i.idItem === id);
 
-    if (produto) {
+    if (item) {
       
       const produtoParaCarrinho = {
-        id: produto.id,
-        name: produto.name,
-        price: produto.price,
-        type: produto.type,
-        image: produto.image,
-        size: produto.type === 'clothing' ? produto.selectedSize : null, 
+        id: item.idItem,
+        name: item.produto.nomeProduto,
+        price: item.preco,
+        image: item.imagemProduto,
         quantity: 1, 
       };
 

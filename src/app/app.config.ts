@@ -5,8 +5,14 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { DetalhesProdutoComponent } from './detalhes-produto/detalhes-produto.component';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration()]
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }), 
+    provideRouter(routes), 
+    provideClientHydration(),
+    provideHttpClient(withFetch())
+  ]
   };
 

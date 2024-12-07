@@ -1,98 +1,26 @@
-<div class="product-row">
+<div class="product-row" >
 
     
-  <div class="product-item" 
-       (mouseenter)="onHover(3, true)" 
-       (mouseleave)="onHover(3, false)">
+  <div class="product-item" *ngFor = "let item of items; let i = index" 
+       (mouseenter)="onHover(i, true)" 
+       (mouseleave)="onHover(i, false)">
     <svg class="highlight-circle" 
-         [class.active]="hovered[3]" 
+         [class.active]="hovered === i" 
          xmlns="http://www.w3.org/2000/svg" 
          viewBox="0 0 100 100">
       <circle cx="50" cy="50" r="50" />
     </svg>
     <img class="product-image" 
-         src="img/moletom-protheus.png" 
-         alt="T-shirt Blanc">
+         src= "{{item.imagemProduto}}"
+         alt="{{item?.produto?.descricaoProduto}}">
     <div class="product-details">
-      <h2>MOLETOM</h2>
-      <span>335,00</span>
+      <h2>{{item?.produto?.nomeProduto}}</h2>
+      <span>{{ item?.preco}}</span>   <!-- Alterar para não se fixo  -->
+    
     </div>
     
-    <button (click)="comprar(1)" class="buy-button" [class.active]="hovered[3]">COMPRAR</button>
-  </div>
-
-  
-  <div class="product-item" 
-       (mouseenter)="onHover(1, true)" 
-       (mouseleave)="onHover(1, false)">
-    <svg class="highlight-circle" 
-         [class.active]="hovered[1]" 
-         xmlns="http://www.w3.org/2000/svg" 
-         viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="50" />
-    </svg>
-    <img class="product-image" 
-         src="img/pin-protheus.png"  
-         alt="Sac Banane">
-    <div class="product-details">
-      <h2>PIN ONÇA PRETA</h2>
-      <span>10,00</span>
-    </div>
-    
-    <button (click)="comprar(2)" class="buy-button" [class.active]="hovered[1]">COMPRAR</button>
-  </div>
-
-
-  <div class="product-item" 
-       (mouseenter)="onHover(2, true)" 
-       (mouseleave)="onHover(2, false)">
-    <svg class="highlight-circle" 
-         [class.active]="hovered[2]" 
-         xmlns="http://www.w3.org/2000/svg" 
-         viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="50" />
-    </svg>
-    <img class="product-image" 
-         src="img/camiseta-protheus.png"  
-         alt="Casquette">
-    <div class="product-details">
-      <h2>CAMISETA</h2>
-      <span>120,00</span>
-    </div>
-   
-    <button (click)="comprar(3)" class="buy-button" [class.active]="hovered[2]">COMPRAR</button>
-  </div>
-
-
-  <div class="product-item" 
-       (mouseenter)="onHover(0, true)" 
-       (mouseleave)="onHover(0, false)">
-    <svg class="highlight-circle" 
-         [class.active]="hovered[0]" 
-         xmlns="http://www.w3.org/2000/svg" 
-         viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="50" />
-    </svg>
-    <img class="product-image" 
-         src="img/cartela-adesivo.png"  
-         alt="Casquette">
-    <div class="product-details">
-      <h2>CARTELA ADESIVO</h2>
-      <span>10,00</span>
-    </div>
-    
-    <button (click)="comprar(4)" class="buy-button" [class.active]="hovered[0]">COMPRAR</button>
+    <button (click)="comprar(item.idItem)" class="buy-button" [class.active]="hovered === i">COMPRAR</button>
   </div>
 </div>
 
 <div class="c-border"></div>
-
-<div class="imagem">
- <img class="camisetas" src="img/Imagem1.png" alt="Camisetas Protheus">
- <img class="camisetas" src="img/Imagem2.png" alt="Camisetas Protheus">
-</div>
-
-
-<div class="c-border"></div>
-
-
