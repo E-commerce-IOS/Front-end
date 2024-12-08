@@ -5,11 +5,12 @@ import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/cor
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CarrinhoService } from './services/carrinho.service';
 import { CarrinhoComponent } from "./carrinho/carrinho.component";
+import { AngularVlibras } from 'angular-vlibras';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, CommonModule, CarrinhoComponent],
+  imports: [RouterOutlet, RouterLink, CommonModule, CarrinhoComponent, AngularVlibras],
   providers: [CarrinhoService],  // Adiciona o serviço aqui
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
