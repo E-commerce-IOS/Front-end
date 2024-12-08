@@ -81,7 +81,6 @@ body {
 
 /* Contact section */
 .parteContato {
-  background-color: #d1a8ee;
   padding: 4rem 2rem;
   text-align: center;
   border-radius: 20px;
@@ -106,7 +105,7 @@ body {
 .item-contato {
   width: 100%;
   padding: 2rem;
-  background-color: #e4c6fa;
+  background-color: #d1a8ee;
   border-radius: 15px;
   text-align: center;
   color: #242424;
@@ -119,7 +118,7 @@ body {
 
 .item-contato:hover {
   transform: translateY(-5px);
-
+  background-color: #FF8C00;
 }
 
 .icone {
@@ -150,13 +149,17 @@ body {
   .parteTita, .parteTroca {
     flex-direction: column;
     padding: 2rem 1rem;
-    margin-top: 4%;
+    margin-top: 16%;
   }
 
   .imagem1, .imagem2 {
     max-width: 100%;
     margin: 1rem 0;
     border-radius: 10px;
+  }
+
+  .parteContato{
+    margin-top: 16%;
   }
 
   .Tita, .troca {
@@ -170,6 +173,13 @@ body {
 
   .titulo-contato {
     font-size: 2em;
+  }
+
+  /* textos */
+  .troca, .Tita {
+    width: 100%;            
+    margin: 0 auto 1rem;    /* Centralizar e adicionar espaço inferior */
+    font-size: 16px;      
   }
 }
 

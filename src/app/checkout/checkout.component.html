@@ -1,9 +1,9 @@
 <div class="checkout-container">
   <input type="range" min="1" max="4" [(ngModel)]="currentStep" class="progress-bar" />
 
-  <!-- Etapa 1: Confirmação dos Produtos e Dados Pessoais -->
+
   <div *ngIf="currentStep === 1" class="step-container">
-    <h2>Etapa 1: Confirmação dos Produtos e Dados Pessoais</h2>
+    <h2>Etapa 1: Checkout </h2>
     <div class="step-content">
       <div class="product-summary">
         <h3>Itens no Carrinho</h3>
@@ -22,17 +22,13 @@
       </div>
       <div class="personal-details">
         <form>
-          <label for="name">Nome Completo:</label>
-          <input id="name" [(ngModel)]="checkoutForm.userDetails.name" name="name" type="text" required placeholder="Digite seu nome completo" aria-describedby="nameHelp" />
-
-          <label for="birthdate">Data de Nascimento:</label>
-          <input id="birthdate" [(ngModel)]="checkoutForm.userDetails.birthDate" name="birthdate" type="date" required aria-describedby="birthdateHelp" />
-
-          <label for="phone">Telefone:</label>
-          <input id="phone" [(ngModel)]="checkoutForm.userDetails.phone" name="phone" type="tel" required placeholder="Ex: (11) 99999-9999" aria-describedby="phoneHelp" />
-
-          <label for="email">Email:</label>
-          <input id="email" [(ngModel)]="checkoutForm.userDetails.email" name="email" type="email" required placeholder="exemplo@dominio.com" aria-describedby="emailHelp" />
+          <div id="botaorosa">
+            <a  routerLink="/login"  class="botao">Fazer Login</a>
+          </div>
+              
+          <div id="botaoazul">
+            <a routerLink="/cadastro" class="botao">Criar conta</a>
+          </div>
         </form>
       </div>
     </div>
@@ -95,12 +91,12 @@
 
       <div *ngIf="checkoutForm.payment.type === 'pix'">
         <h3>QR Code do Pix</h3>
-        <img src="qrcode.jpeg" alt="QR Code do Pix" />
+        <img src="img/qrcode.jpeg" alt="QR Code do Pix" />
       </div>
 
       <div *ngIf="checkoutForm.payment.type === 'credit'">
         <h3>Detalhes do Cartão</h3>
-        <form>
+        <form class="credito">
           <label for="cardNumber">Número do Cartão:</label>
           <input id="cardNumber" [(ngModel)]="checkoutForm.payment.cardNumber" name="cardNumber" type="text" placeholder="**** **** **** ****" />
 
@@ -124,7 +120,7 @@
 
       <div *ngIf="checkoutForm.payment.type === 'debit'">
         <h3>Detalhes do Cartão</h3>
-        <form>
+        <form class="debito">
           <label for="cardNumber">Número do Cartão:</label>
           <input id="cardNumber" [(ngModel)]="checkoutForm.payment.cardNumber" name="cardNumber" type="text" placeholder="**** **** **** ****" />
 

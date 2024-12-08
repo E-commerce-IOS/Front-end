@@ -73,24 +73,24 @@ section {
 /* Imagem da fachada do IOS */
 .fachadaIos {
     position: absolute;
-    max-width: 34%;
-    height: 90%;
+    width: 500px; 
+    height: 700px; 
     border-radius: 60px;
     left: 8%;
 }
 
 .imagem2 {
     position: absolute;
-    max-width: 36%;
-    height: auto;
+    width: 500px; 
+    height: 700px; 
     border-radius: 60px;
     right: 8%;
 }
 
 .imagemlogo{
     position: absolute;
-    max-width: 34%;
-    height: auto;
+    width: 500px; 
+    height: 700px; 
     border-radius: 60px;
     right: 8%;
 }
@@ -178,6 +178,7 @@ h2{
     margin-bottom: 2%;
     color: #FFA500;
 }
+
 
 
 /* Modelo para mobile */
