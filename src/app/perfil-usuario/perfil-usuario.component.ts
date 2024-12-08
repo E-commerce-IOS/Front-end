@@ -21,13 +21,7 @@ interface User {
   styleUrls: ['./perfil-usuario.component.css']
 })
 export class PerfilUsuarioComponent implements OnInit {
-  user: User = {
-    photo: '', // Inicializa com uma string vazia para evitar erros de tipo
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
-  };
+  user: any = {}
 
   isEditing = false;
   orderHistory: any[] = [];
@@ -46,16 +40,11 @@ export class PerfilUsuarioComponent implements OnInit {
 
   // Carrega informações do usuário do serviço de checkout
   loadUserInfo() {
-    try {
-      const userInfo = this.checkoutService.getUserInfo();
-      if (userInfo) {
-        this.user = {
-          ...userInfo,
-          photo: userInfo['photo'] || '', // Garante que photo seja uma string vazia se estiver ausente
-        };
-      }
-    } catch (error) {
-      console.error('Erro ao carregar informações do usuário', error);
+    const userInfo = this.checkoutService.getUserInfo();
+    if (userInfo) {
+      this.user = userInfo;
+    } else {
+      console.error('Usuário não encontrado');
     }
   }
 
@@ -88,14 +77,16 @@ export class PerfilUsuarioComponent implements OnInit {
 
   saveChanges() {
     this.isEditing = false;
-
+  
     // Salva as informações do usuário no serviço de checkout
     try {
-      this.checkoutService.saveUserInfo({
+      this.checkoutService.setUserInfo({
         name: this.user.name,
         email: this.user.email,
         phone: this.user.phone,
         address: this.user.address,
+        admin: this.user.admin
+         // Se você estiver permitindo salvar a foto
       });
       alert('Informações atualizadas com sucesso!');
     } catch (error) {
@@ -103,6 +94,7 @@ export class PerfilUsuarioComponent implements OnInit {
       alert('Erro ao salvar as informações. Por favor, tente novamente.');
     }
   }
+  
 
   uploadPhoto(event: any) {
     const file = event.target.files[0];
@@ -110,8 +102,11 @@ export class PerfilUsuarioComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.user.photo = e.target.result;
+        alert('Foto atualizada com sucesso!');
       };
       reader.readAsDataURL(file);
+    } else {
+      alert('Nenhuma foto selecionada.');
     }
   }
 

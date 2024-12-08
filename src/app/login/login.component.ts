@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { UsuarioLogin } from '../models/usuarioLogin.model';
+import { CheckoutService } from '../services/checkout.service';
 
 
 @Component({
@@ -12,14 +15,32 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class LoginComponent {
 
-  email: string = '';
-  password: string = '';
 
-  login() {
-    if (this.email && this.password) {
-      alert(`Bem-vindo, ${this.email}!`);
-    } else {
-      alert('Login e/ou senha inválidos(s).Tente novamente.');
-    }
+  constructor(private authService: AuthService, private router: Router,
+    private checkoutService: CheckoutService
+  ) {}
+
+  login(email: string, senha: string) {
+    this.authService.login({ emailUsuario: email, senhaUsuario: senha }).subscribe({
+      next: (response) => {
+        console.log('Login realizado com sucesso!', response);
+        alert('Login realizado com sucesso!')
+        const user = response.user; // Certifique-se de que os dados do usuário estão disponíveis na resposta.
+        
+        // Salvar os dados do usuário no CheckoutService
+        this.checkoutService.setUserInfo({
+          name: user.nomeUsuario,
+          email: user.emailUsuario,
+          phone: user.telefoneUsuario,
+          address: user.enderecoUsuario,
+          admin: user.administrador
+        });
+        this.router.navigate(['/perfil']); 
+      },
+      error: (err) => {
+        console.error('Erro no login:', err);
+        alert('Erro ao realizar login. Verifique as credenciais.');
+      },
+    });
   }
 }

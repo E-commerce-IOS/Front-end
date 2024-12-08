@@ -4,14 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CheckoutService {
+  private userInfo: any | null = null;
+  
+  
   private checkoutData: {
-    userInfo?: {
-      [x: string]: string;
-      name: string;
-      email: string;
-      phone: string;
-      address: string;
-    };
     paymentInfo?: {
       method: string;
       cardDetails?: {
@@ -29,14 +25,9 @@ export class CheckoutService {
   } = {};
 
   // Salvar informações do checkout
-  saveUserInfo(userInfo: {
-    name: string;
-    email: string;
-    phone: string;
-    address: string;
-  }) {
-    this.checkoutData.userInfo = userInfo;
-    console.log('Informações do usuário salvas:', this.checkoutData.userInfo);
+  setUserInfo(user: { name: string; email: string; phone: string; address: string, admin: boolean }) {
+    this.userInfo = user;
+    console.log('Usuário salvo:', this.userInfo); 
   }
 
   savePaymentInfo(paymentInfo: {
@@ -63,7 +54,8 @@ export class CheckoutService {
 
   // Recuperar informações específicas
   getUserInfo() {
-    return this.checkoutData.userInfo;
+    console.log('Dados do usuário recuperados:', this.userInfo); // Adicionando log para verificar
+    return this.userInfo;
   }
 
   getPaymentInfo() {
@@ -73,6 +65,7 @@ export class CheckoutService {
   getOrderSummary() {
     return this.checkoutData.orderSummary;
   }
+ 
 
   // Recuperar todos os dados do checkout
   getAllCheckoutData() {
@@ -84,4 +77,6 @@ export class CheckoutService {
     this.checkoutData = {};
     console.log('Dados de checkout resetados.');
   }
+
+  
 }

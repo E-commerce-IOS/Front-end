@@ -1,10 +1,10 @@
 export interface UsuarioLogin {
     id_usuario?: number,
-    nome_usuario: string,
-    email_usuario: string,
-    senha_usuario: string, //db = CHAR(10) 
-    telefone_usuario: string //db = CHAR(15)
-    endereco_usuario: string,
+    nomeUsuario: string,
+    emailUsuario: string,
+    senhaUsuario: string, //db = CHAR(10) 
+    telefoneUsuario: string //db = CHAR(15)
+    enderecoUsuario: string,
     administrador: boolean,
-    token: string
+    token?: string
 }
