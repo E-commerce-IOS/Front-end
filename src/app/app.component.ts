@@ -20,6 +20,7 @@ import { ChatbotComponent } from "./chatbot/chatbot.component";
 export class AppComponent implements OnInit {
   menuActive = false; // Controle do menu mobile
   isMobile = false; // Indica se está em dispositivo móvel
+  showButton: any;
 
   constructor(
     public carrinhoService: CarrinhoService,
@@ -73,4 +74,14 @@ export class AppComponent implements OnInit {
     const produto = { name: 'Produto Teste', price: 100 };
     this.carrinhoService.addItem(produto);
   }
+
+  scrollToTop(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  }
+
 }

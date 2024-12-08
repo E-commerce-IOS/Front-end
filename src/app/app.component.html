@@ -76,3 +76,8 @@
 <app-carrinho></app-carrinho>
 
 <router-outlet></router-outlet>
+
+<button *ngIf="showButton" (click)="scrollToTop()" class="scroll-to-top">
+  <span>&#8593;</span>
+</button>
+
