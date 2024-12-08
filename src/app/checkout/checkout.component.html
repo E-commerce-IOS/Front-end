@@ -1,0 +1,178 @@
+<div class="checkout-container">
+  <input type="range" min="1" max="4" [(ngModel)]="currentStep" class="progress-bar" />
+
+
+  <div *ngIf="currentStep === 1" class="step-container">
+    <h2>Etapa 1: Checkout </h2>
+    <div class="step-content">
+      <div class="product-summary">
+        <h3>Itens no Carrinho</h3>
+        <div *ngFor="let item of products$ | async" class="product-item">
+          <img [src]="item.image" alt="{{ item.name }}" class="product-image" />
+          <div class="product-details">
+            <p class="product-name">{{ item.name }}</p>
+            <p class="product-price">{{ item.price | currency:'BRL' }}</p>
+            <p class="product-description">{{ item.description }}</p>
+          </div>
+        </div>
+        <div class="cart-summary">
+          <p>Total de itens no carrinho: {{ itemCount$ | async }}</p>
+          <p>Total da compra: {{ totalAmount$ | async | currency:'BRL' }}</p>
+        </div>
+      </div>
+      <div class="personal-details">
+        <form>
+          <div id="botaorosa">
+            <a  routerLink="/login"  class="botao">Fazer Login</a>
+          </div>
+              
+          <div id="botaoazul">
+            <a routerLink="/cadastro" class="botao">Criar conta</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="button-container">
+      <button class="next-btn" (click)="nextStep()">Próxima</button>
+    </div>
+  </div>
+
+  <!-- Etapa 2: Endereço -->
+  <div *ngIf="currentStep === 2" class="step-container">
+    <h2>Etapa 2: Endereço</h2>
+    <div class="step-content">
+      <div class="address-form">
+        <form>
+          <label for="zip">CEP:</label>
+          <input id="zip" [(ngModel)]="checkoutForm.address.zipCode" name="zip" type="text" required (blur)="onZipCodeBlur()" placeholder="Digite o CEP" aria-describedby="zipHelp" />
+
+          <label for="neighborhood">Bairro:</label>
+          <input id="neighborhood" [(ngModel)]="checkoutForm.address.neighborhood" name="neighborhood" type="text" required placeholder="Digite o bairro" aria-describedby="neighborhoodHelp" />
+
+          <label for="street">Rua:</label>
+          <input id="street" [(ngModel)]="checkoutForm.address.street" name="street" type="text" required placeholder="Digite a rua" aria-describedby="streetHelp" />
+
+          <label for="number">Número:</label>
+          <input id="number" [(ngModel)]="checkoutForm.address.number" name="number" type="text" required placeholder="Número da casa" aria-describedby="numberHelp" />
+
+          <label for="complement">Complemento:</label>
+          <input id="complement" [(ngModel)]="checkoutForm.address.complement" name="complement" type="text" placeholder="Apartamento, bloco, etc." aria-describedby="complementHelp" />
+
+          <button type="button" class="prev-btn" (click)="calculateShipping()">Calcular Frete</button>
+          <h2> Agendamento</h2>
+            <div>
+              <input id="deliveryDate" [(ngModel)]="checkoutForm.shipping.estimatedDelivery" name="deliveryDate" type="date" aria-describedby="deliveryDateHelp" />
+            </div>
+        </form>
+      </div>
+    </div>
+    <div class="button-container">
+      <button class="prev-btn" (click)="prevStep()">Voltar</button>
+      <button class="next-btn" (click)="nextStep()">Próxima</button>
+    </div>
+  </div>
+
+  <!-- Etapa 4: Forma de Pagamento -->
+  <div *ngIf="currentStep === 3" class="step-container">
+    <h2>Etapa 3: Forma de Pagamento</h2>
+    <div class="step-content">
+      <div class="payment-options">
+        <h3>Escolha sua Forma de Pagamento</h3>
+        <label>
+          <input type="radio" name="paymentType" value="credit" [(ngModel)]="checkoutForm.payment.type" /> Cartão de Crédito
+        </label>
+        <label>
+          <input type="radio" name="paymentType" value="debit" [(ngModel)]="checkoutForm.payment.type" /> Cartão de Débito
+        </label>
+        <label>
+          <input type="radio" name="paymentType" value="pix" [(ngModel)]="checkoutForm.payment.type" /> Pix
+        </label>
+      </div>
+
+      <div *ngIf="checkoutForm.payment.type === 'pix'">
+        <h3>QR Code do Pix</h3>
+        <img src="img/qrcode.jpeg" alt="QR Code do Pix" />
+      </div>
+
+      <div *ngIf="checkoutForm.payment.type === 'credit'">
+        <h3>Detalhes do Cartão</h3>
+        <form class="credito">
+          <label for="cardNumber">Número do Cartão:</label>
+          <input id="cardNumber" [(ngModel)]="checkoutForm.payment.cardNumber" name="cardNumber" type="text" placeholder="**** **** **** ****" />
+
+          <label for="cardName">Nome do Titular:</label>
+          <input id="cardName" [(ngModel)]="checkoutForm.payment.cardName" name="cardName" type="text" placeholder="Nome Completo" />
+
+          <label for="expiryDate">Data de Validade:</label>
+          <input id="expiryDate" [(ngModel)]="checkoutForm.payment.expiryDate" name="expiryDate" type="text" placeholder="MM/AA" />
+
+          <label for="cvv">CVV:</label>
+          <input id="cvv" [(ngModel)]="checkoutForm.payment.cvv" name="cvv" type="text" placeholder="***" />
+
+          <label for="parcelamento">Quantidade de Parcelas:</label>
+          <select id="parcelamento" [(ngModel)]="checkoutForm.payment.installments" name="parcelamento">
+            <option *ngFor="let num of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" [value]="num">
+              {{ num }}
+            </option>
+          </select>
+        </form>
+      </div>
+
+      <div *ngIf="checkoutForm.payment.type === 'debit'">
+        <h3>Detalhes do Cartão</h3>
+        <form class="debito">
+          <label for="cardNumber">Número do Cartão:</label>
+          <input id="cardNumber" [(ngModel)]="checkoutForm.payment.cardNumber" name="cardNumber" type="text" placeholder="**** **** **** ****" />
+
+          <label for="cardName">Nome do Titular:</label>
+          <input id="cardName" [(ngModel)]="checkoutForm.payment.cardName" name="cardName" type="text" placeholder="Nome Completo" />
+
+          <label for="expiryDate">Data de Validade:</label>
+          <input id="expiryDate" [(ngModel)]="checkoutForm.payment.expiryDate" name="expiryDate" type="text" placeholder="MM/AA" />
+
+          <label for="cvv">CVV:</label>
+          <input id="cvv" [(ngModel)]="checkoutForm.payment.cvv" name="cvv" type="text" placeholder="***" />
+
+
+
+        </form>
+      </div>
+    </div>
+    <div class="button-container">
+      <button class="prev-btn" (click)="prevStep()">Voltar</button>
+      <button class="next-btn" (click)="nextStep()">Finalizar Compra</button>
+    </div>
+  </div>
+
+<!-- Etapa 5: Confirmação -->
+<div *ngIf="currentStep === 4" class="step-container">
+  <h2>Etapa 4: Confirmação</h2>
+  <div class="confirmation-message">
+    <p>Obrigado pela sua compra, {{ checkoutForm.userDetails.name }}!</p>
+    
+    <p><strong>Resumo do pedido:</strong></p>
+    
+    <div class="order-details">
+      <p><strong>Nome completo:</strong> {{ checkoutForm.userDetails.name }}</p>
+      <p><strong>Email:</strong> {{ checkoutForm.userDetails.email }}</p>
+      <p><strong>Telefone:</strong> {{ checkoutForm.userDetails.phone }}</p>
+
+      <p><strong>Endereço de entrega:</strong></p>
+      <p>{{ checkoutForm.address.street }}, {{ checkoutForm.address.number }}, {{ checkoutForm.address.complement }}</p>
+      <p>{{ checkoutForm.address.neighborhood }}, {{ checkoutForm.address.zipCode }}</p>
+
+      <p><strong>Método de pagamento:</strong> {{ checkoutForm.payment.type === 'credit' ? 'Cartão de Crédito' : checkoutForm.payment.type === 'debit' ? 'Cartão de Débito' : 'Pix' }}</p>
+      <p *ngIf="checkoutForm.payment.type !== 'pix'"><strong>Últimos 4 dígitos do cartão:</strong> {{ checkoutForm.payment.cardNumber.slice(-4) }}</p>
+      
+
+
+      <p><strong>Total:</strong> {{ totalAmount$ | async | currency:'BRL' }}</p>
+    </div>
+
+    <div class="button-container">
+      <button class="prev-btn" (click)="prevStep()">Voltar</button>
+      <button class="next-btn" routerLink="" >Confirmar e Finalizar</button>
+    </div>
+          
+  </div>
+</div>

@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Nunito&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
+/* Global styles */
+body {
+  font-family: 'Barlow', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+  background-color: #f8f0ff;
+}
+
+/* Section Tita */
+.parteTita {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2rem;
+  background-color: #d1a8ee;
+  border-radius: 20px;
+  margin: 4% auto;
+  color: #1f1f1f;
+  text-align: left;
+  transition: transform 0.3s ease-in-out;
+}
+
+.parteTita:hover {
+  transform: scale(1.02);
+}
+
+.imagem1 {
+  max-width: 45%;
+  height: auto;
+  border-radius: 20px;
+  margin-left: 1.5rem;
+  object-fit: cover;
+}
+
+.Tita {
+  width: 50%;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Section Troca */
+.parteTroca {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2rem;
+  background-color: #49176d;
+  border-radius: 20px;
+  color: #f8f0ff;
+  margin: 6% auto;
+  text-align: left;
+  transition: transform 0.3s ease-in-out;
+}
+
+.parteTroca:hover {
+  transform: scale(1.02);
+}
+
+.imagem2 {
+  max-width: 45%;
+  height: auto;
+  border-radius: 20px;
+  margin-right: 1.5rem;
+  object-fit: cover;
+ 
+}
+
+.troca {
+  width: 50%;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Contact section */
+.parteContato {
+
+  padding: 4rem 2rem;
+  text-align: center;
+  border-radius: 20px;
+  
+}
+
+.titulo-contato {
+  font-size: 2.5em;
+  margin-bottom: 1.5rem;
+  color: #49176d;
+  font-weight: 600;
+}
+
+/* Contact cards */
+.informacoes-contato {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.item-contato {
+  width: 100%;
+  padding: 2rem;
+  background-color: #d1a8ee;
+  border-radius: 15px;
+  text-align: center;
+  color: #242424;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.item-contato:hover {
+  transform: translateY(-5px);
+  background-color: #FF8C00;
+}
+
+.icone {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.item-contato h3 {
+  font-size: 1.3em;
+  color: #FF8C00;
+}
+
+.email, .store-link, .fa-whatsapp {
+  color: #242424;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.email:hover, .store-link:hover, .fa-whatsapp:hover {
+  color: #49176d;
+  text-decoration: underline;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .parteTita, .parteTroca {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    margin-top: 16%;
+  }
+
+  .imagem1, .imagem2 {
+    max-width: 100%;
+    margin: 1rem 0;
+    border-radius: 10px;
+  }
+
+  .parteContato{
+    margin-top: 16%;
+  }
+
+  .Tita, .troca {
+    font-size: 1rem;
+  }
+
+  .item-contato {
+    padding: 1.5rem;
+    width: 90%;
+  }
+
+  .titulo-contato {
+    font-size: 2em;
+  }
+
+  /* textos */
+  .troca, .Tita {
+    width: 100%;            
+    margin: 0 auto 1rem;    /* Centralizar e adicionar espaço inferior */
+    font-size: 16px;      
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .titulo-contato {
+    font-size: 1.8em;
+  }
+
+  .item-contato {
+    width: 95%;
+    padding: 1rem;
+    font-size: 1em;
+  }
+
+  .icone {
+    width: 70px;
+    height: 70px;
+  }
+}

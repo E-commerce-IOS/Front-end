@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Nunito&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Titan+One&display=swap');
+
+
+
+/* Container principal */
+.container-animacao, .mobile-container {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ocupa 100% da altura da viewport */
+  background-color: #49176d; /* Fundo roxo */
+  position: relative;
+  overflow: hidden;
+  padding: 0 1rem; /* Adiciona espaçamento nas laterais */
+  box-sizing: border-box; /* Garante que o padding não afete a largura total */
+}
+
+/* Texto animado */
+.word {
+  font-family: 'Titan One';
+  font-size: 8rem; /* Tamanho padrão */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap; /* Permite a quebra de linha */
+  white-space: normal; /* Garante que o texto quebre em múltiplas linhas */
+}
+
+.letter {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  animation: dance 0.8s ease-out forwards;
+}
+
+@keyframes dance {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-20px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  75% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.letter:hover {
+  animation: bounce 1s ease;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-60px);
+  }
+  75% {
+    transform: translateY(40px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.container-faixa {
+  width: 100%;
+  background-color: #7faece;
+  padding: 10px 0;
+  border: solid 7px #f4a410;
+}
+
+.rotating-banner {
+  width: 100%;
+  overflow: hidden;
+  color: black;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: scroll 20s linear infinite;
+  font-family: 'Roboto flex';
+  font-weight: 500;
+}
+
+.banner-content span, .banner-content img {
+  white-space: nowrap;
+  margin: 0 20px;
+  font-size: 1.2em;
+}
+
+.banner-content img {
+  height: 40px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.bichinho-piscando {
+  width: 6rem;
+  padding: 0;
+}
+
+/* Canto esquerdo e direito */
+.canto-esquerdo {
+  position: absolute;
+  bottom: -7rem;
+  left: -10rem;
+  width: 20rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: aparecer 1.5s ease-out forwards;
+}
+
+.canto-direito {
+  position: absolute;
+  top: -7rem;
+  right: -10rem;
+  width: 20rem;
+  opacity: 0;
+  transform: translateX(20px);
+  animation: aparecer-direito 1.5s ease-out forwards;
+}
+
+@keyframes aparecer {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aparecer-direito {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .container-animacao {
+    background-color: #49176d; /* Garante que o fundo continue roxo */
+    padding: 0 2rem; /* Aumenta o padding nas laterais para evitar cortes */
+  }
+
+  .word {
+    font-size: 6rem; /* Ajuste para tablets */
+    flex-direction: column; /* Alinha as palavras em coluna */
+    text-align: center; /* Centraliza o texto */
+  }
+
+  .letter {
+    display: inline-block;
+    margin-bottom: 0.5rem; /* Adiciona espaçamento entre as letras */
+  }
+
+  .canto-esquerdo, .canto-direito {
+    width: 15rem;
+  }
+
+  .bichinho-piscando {
+    width: 5rem; /* Ajuste para dispositivos maiores */
+  }
+}
+
+@media (max-width: 768px) {
+  .container-animacao {
+    background-color: #49176d; /* Garante que o fundo continue roxo */
+    padding: 0 2rem; /* Adiciona espaçamento nas laterais */
+  }
+
+  .word {
+    font-size: 5rem; /* Ajuste para dispositivos menores */
+    flex-direction: column; /* Coloca as palavras em uma coluna */
+    align-items: center; /* Centraliza as palavras */
+  }
+
+  .letter {
+    display: inline-block;
+    margin-bottom: 0.5rem; /* Adiciona espaçamento entre as letras */
+  }
+
+  .canto-esquerdo, .canto-direito {
+    width: 12rem;
+  }
+
+  .bichinho-piscando {
+    width: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-animacao {
+    background-color: #49176d; /* Garante que o fundo continue roxo */
+    padding: 0 1rem; /* Ajuste para dispositivos menores */
+  }
+
+  .word {
+    font-size: 4rem; /* Ajuste para dispositivos pequenos */
+    flex-direction: column; /* Alinha as palavras em coluna */
+  }
+
+  .canto-esquerdo, .canto-direito {
+    width: 10rem;
+  }
+
+  .banner-content {
+    font-size: 0.8em;
+  }
+}

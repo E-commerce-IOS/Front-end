@@ -1,0 +1,88 @@
+<div class="profile-container">
+    <!-- Foto do Usuário -->
+    <section class="profile-photo">
+      <img [src]="user.photo" alt="Foto do Usuário" />
+      <label for="photo-upload" class="upload-btn">Alterar Foto</label>
+      <input id="photo-upload" type="file" (change)="uploadPhoto($event)" hidden />
+    </section>
+  
+    <!-- Informações do Usuário -->
+    <section class="profile-info">
+      <h2>Informações do Usuário</h2>
+      <div class="info-field">
+        <label for="name">Nome</label>
+        <input
+          *ngIf="isEditing"
+          id="name"
+          [(ngModel)]="user.name"
+          placeholder="Digite seu nome"
+        />
+        <p *ngIf="!isEditing">{{ user.name }}</p>
+      </div>
+      <div class="info-field">
+        <label for="email">Email</label>
+        <input
+          *ngIf="isEditing"
+          id="email"
+          [(ngModel)]="user.email"
+          placeholder="Digite seu email"
+        />
+        <p *ngIf="!isEditing">{{ user.email }}</p>
+      </div>
+      <div class="info-field">
+        <label for="phone">Telefone</label>
+        <input
+          *ngIf="isEditing"
+          id="phone"
+          [(ngModel)]="user.phone"
+          placeholder="Digite seu telefone"
+        />
+        <p *ngIf="!isEditing">{{ user.phone }}</p>
+      </div>
+      <div class="info-field">
+        <label for="address">Endereço</label>
+        <textarea
+          *ngIf="isEditing"
+          id="address"
+          [(ngModel)]="user.address"
+          placeholder="Digite seu endereço"
+        ></textarea>
+        <p *ngIf="!isEditing">{{ user.address }}</p>
+      </div>
+    </section>
+  
+    <!-- Botões de Ação -->
+    <section class="action-buttons">
+      <button *ngIf="!isEditing" (click)="toggleEdit()" class="edit-btn">
+        Editar Informações
+      </button>
+      <button class="edit-btn">Painel do Administrador</button>
+      <button *ngIf="isEditing" (click)="saveChanges()" class="save-btn">
+        Salvar Alterações
+      </button>
+      <button *ngIf="isEditing" (click)="toggleEdit()" class="cancel-btn">
+        Cancelar
+      </button>
+    </section>
+  
+    <!-- Acompanhe e Histórico -->
+    <section class="orders-section">
+  
+  
+      <h3>Histórico de Pedidos</h3>
+      <ul class="orders-list">
+        <li *ngFor="let order of orderHistory" class="order-item">
+          <strong>{{ order.item }}</strong> - {{ order.date }} -
+          <span [class]="order.status === 'Entregue' ? 'status-delivered' : 'status-pending'">
+            {{ order.status }}
+          </span>
+          <button (click)="viewOrderDetails(order.id)" class="details-btn">
+            Ver Detalhes
+          </button>
+        </li>
+      </ul>
+  
+    </section>
+  
+  </div>
+  

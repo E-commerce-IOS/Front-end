@@ -1,0 +1,59 @@
+<div class="product-page">
+    <div class="product-container">
+      <!-- Coluna da Imagem -->
+      <div class="product-images">
+        <!-- Container para imagem com efeito de lupa -->
+        <div class="image-container"
+             #imageContainer
+             (mousemove)="onMouseMove($event)"
+             (mouseenter)="onMouseEnter()"
+             (mouseleave)="onMouseLeave()">
+          <img class="main-image" #mainImage [src]="product?.image" alt="{{ product?.name }}" />
+          <div class="zoom-lens" #zoomLens></div> <!-- Lupa -->
+        </div>
+      </div>
+  
+      <!-- Coluna de Detalhes -->
+      <div class="product-details">
+        <h2>{{ product?.name }}</h2>
+        <p class="product-code">Código: {{ product?.code }}</p>
+  
+        <!-- Tamanhos -->
+        <div class="sizes">
+          <p>Tamanho:</p>
+          <div class="size-buttons">
+            <button *ngFor="let size of product?.sizes"
+                    class="size-button"
+                    [class.selected]="selectedSize === size"
+                    (click)="selectSize(size)">
+              {{ size }}
+            </button>
+          </div>
+        </div>
+  
+        <!-- Cores -->
+        <div class="colors">
+          <p>Cores disponíveis:</p>
+          <div class="color-buttons">
+            <button *ngFor="let color of product?.colors"
+                    class="color-button"
+                    [style.backgroundColor]="color"
+                    [class.selected]="selectedColor === color"
+                    (click)="changeColor(color)">
+            </button>
+          </div>
+        </div>
+  
+        <!-- Preço -->
+        <p class="price">R$ {{ formattedPrice }}</p>
+        <p class="installments">3x de R$ {{ (product?.price / 3) | number:'1.2-2' }} no cartão de crédito</p>
+  
+        <!-- Ações -->
+        <div class="actions">
+          <button class="buy-button" (click)="comprar()">Comprar</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  

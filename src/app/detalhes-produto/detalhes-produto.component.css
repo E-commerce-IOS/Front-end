@@ -1,0 +1,257 @@
+/* Página geral */
+.product-page {
+    font-family: 'Arial', sans-serif;
+    background-color: #eae6f7;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Centralizando o conteúdo do produto */
+.product-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; /* Espaço entre imagem e informações */
+    flex-wrap: wrap;
+  
+    margin: 0 auto;
+}
+
+/* Imagem do Produto */
+.product-images {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Container da Imagem (com a lupa) */
+.image-container {
+    position: relative;
+    width: max-content;
+    background-color: #f1f1f1; /* Cor de fundo suave */
+    border-radius: 10px; /* Bordas arredondadas para um visual mais suave */
+    padding: 15px; /* Espaçamento interno para dar destaque */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para destaque */
+    overflow: hidden; /* Garante que a lupa não ultrapasse os limites do container */
+}
+
+.image-container:hover {
+    background-color: #e0e0e0; /* Cor de fundo mais escura no hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Aumenta a sombra no hover para dar mais destaque */
+}
+
+/* Lupa */
+.zoom-lens {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    display: none; /* Escondida inicialmente */
+    border: 3px solid #6c63ff; /* Borda roxa para a lupa */
+}
+
+/* Imagem principal */
+.main-image {
+    max-width: 100%;
+    transition: transform 0.2s ease; /* Suaviza a transição ao aplicar o zoom */
+    border-radius: 8px;
+}
+
+/* Área de zoom - deve ser oculta inicialmente */
+.zoom-lens {
+    position: absolute;
+    border: 3px solid rgba(0, 0, 0, 0.4);
+    cursor: zoom-in;
+    width: 100px; /* Tamanho da área da lupa */
+    height: 100px; /* Tamanho da área da lupa */
+    display: none; /* Inicialmente oculta */
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%; /* Tornar a lupa circular */
+}
+
+/* Efeito de zoom mais preciso */
+.image-container:hover .zoom-lens {
+    display: block; /* Mostrar a lupa ao passar o mouse */
+}
+
+/* Detalhes do Produto */
+.product-details {
+    max-width: 400px;
+    text-align: left; /* Alinha as informações à esquerda */
+}
+
+.product-details h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.product-code {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.sizes p, .colors p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Botões de tamanho */
+.size-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.size-button {
+    padding: 10px 15px;
+    font-weight: bold;
+    color: purple;
+    border: 2px solid purple;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.size-button.selected {
+    background-color: purple;
+    color: white;
+}
+
+/* Botões de cor */
+.color-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.color-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.color-button.selected {
+    border-color: purple;
+    transform: scale(1.1);
+}
+
+/* Preço */
+.price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.installments {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Botões de ação */
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.buy-button {
+    background-color: purple;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buy-button:hover {
+    background-color: purple;
+}
+
+.back-button {
+    background-color: transparent;
+    color: purple;
+    padding: 10px 20px;
+    border: 2px solid purple;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.back-button:hover {
+    background-color: #6c63ff;
+    color: white;
+}
+
+
+@media (max-width: 768px) {
+
+    .main-image {
+        max-width: 30%;
+      
+    }
+
+    .product-details {
+        text-align: start;
+        max-width: 40%;
+    }
+
+    .product-details h2 {
+        font-size: 1.5rem;
+    }
+
+    .price {
+        font-size: 1.5rem;
+    }
+
+    .size-buttons, .color-buttons {
+        justify-content: start;
+    }
+
+    .actions {
+        align-items: start;
+        gap: 15px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .product-page {
+        padding: 10px;
+    }
+
+    .product-container {
+        gap: 15px;
+    }
+
+    .product-details h2 {
+        font-size: 1.2rem;
+    }
+
+    .price {
+        font-size: 1.2rem;
+    }
+
+    .size-button {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .color-button {
+        width: 30px;
+        height: 30px;
+    }
+
+    .buy-button, .back-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}

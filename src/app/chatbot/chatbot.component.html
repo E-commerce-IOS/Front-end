@@ -1,0 +1,58 @@
+<div class="chatbot-container" [class.open]="isChatOpen">
+    <!-- Mensagem de introdução com animação SVG -->
+    <div class="intro-message" *ngIf="showIntroMessage">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 400 60"
+        class="intro-svg"
+      >
+        <text
+          x="50%"
+          y="50%"
+          dominant-baseline="middle"
+          text-anchor="middle"
+          fill="#FFFFFF"
+          font-size="20"
+          font-family="Arial, sans-serif"
+        >
+          Eu sou a Tita! Você precisa de ajuda?
+        </text>
+      </svg>
+    </div>
+  
+    <!-- Botão do Chat -->
+    <div
+      class="chatbot-icon"
+      (click)="toggleChat()"
+      *ngIf="!isChatOpen"
+    >
+      <img src="img/tita-chatbot.png" alt="Chatbot" />
+    </div>
+  
+    <!-- Janela de Chat -->
+    <div class="chat-window" *ngIf="isChatOpen">
+      <div class="chat-header">
+        <h3>Fale com a Tita</h3>
+        <button (click)="toggleChat()">X</button>
+      </div>
+      <div class="chat-body">
+        <div
+          class="message"
+          *ngFor="let chat of chatHistory"
+          [class.user]="chat.sender === 'user'"
+          [class.bot]="chat.sender === 'bot'"
+          [innerHTML]="chat.message"
+        ></div>
+      </div>
+      <div class="chat-footer">
+        <input
+          type="text"
+          [(ngModel)]="userMessage"
+          placeholder="Digite um número..."
+          (keydown.enter)="sendMessage()"
+        />
+        <button (click)="sendMessage()">Enviar</button>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,78 @@
+<!-- Navbar Desktop -->
+<div class="navbar navbar-desktop" id="navbar" *ngIf="!isMobile">
+  <div class="navbar-container">
+    <!-- Logo -->
+    <div class="navbar-logo-center">
+      <a href="/" class="navbar-logo">
+        <img src="img/logo.svg" alt="Logo Loja IOS" class="logo-svg">
+      </a>
+    </div>
+    <!-- Links do Menu -->
+    <div class="navbar-left">
+      <a routerLink="/">Home</a>
+      <a routerLink="/sobre">Sobre</a>
+      <a routerLink="/produtos">Produtos</a>
+    </div>
+
+    <div class="navbar-right">
+
+     
+   
+      <div class="navbar-search">
+        <div class="search-container">
+            <!-- LÓGICA DO PROCURAR SERÁ COLOCADA AQUI -->
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn" type="submit"><img src="img/lupa.png" alt=""></button>
+              </form>
+        </div>
+      </div>
+
+      
+      <button class="btn"><a (click)="carrinhoService.toggleCart()" class="icon">
+        <img src="img/carrinho-logo.png" alt="Carrinho" class="carrinho-logo">
+      </a></button>
+      
+
+      <a routerLink="/conecta"><button type="button" class="btn "> <img src="img/login.png"> </button></a>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Navbar Mobile -->
+<div class="navbar navbar-mobile" id="nav" *ngIf="isMobile">
+  <div class="navbar-container">
+    <!-- Logo centralizado -->
+    <a href="/" class="navbar-logo-mobile">
+      <img src="img/logo.svg" alt="Logo Loja IOS" class="logo-svg">
+    </a>
+    <!-- Hambúrguer à direita -->
+    <button class="hamburger" (click)="toggleMenu()">☰</button>
+  </div>
+</div>
+
+<!-- Sidebar Mobile -->
+<div class="sidebar" [class.active]="menuActive">
+  <div class="sidebar-header">
+    <button class="close-btn" (click)="toggleMenu()">×</button>
+  </div>
+  <div class="sidebar-links">
+    <a routerLink="/" (click)="toggleMenu()">Home</a>
+    <a routerLink="/sobre" (click)="toggleMenu()">Sobre</a>
+    <a routerLink="/produtos" (click)="toggleMenu()">Produtos</a>
+    <button class="navbar-button" routerLink="/conecta" (click)="toggleMenu()">Conecte-se</button>
+  </div>
+</div>
+
+<angular-vlibras />
+
+<app-chatbot></app-chatbot>
+
+
+<app-carrinho></app-carrinho>
+
+<router-outlet></router-outlet>

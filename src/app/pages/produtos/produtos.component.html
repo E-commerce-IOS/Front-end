@@ -1,0 +1,112 @@
+<div class="card mb-3  shadow-sm rounded p-3">
+  <img class="card-img-top" src="img/banner-produtos.png" alt="Card image cap">
+</div>
+
+  <!-- Botão de filtro para mobile -->
+<button class="toggle-filter-mobile" (click)="toggleFilter()"><img src="img/filtro.png" alt=""></button>
+
+<div class="page-container">
+  <!-- Sidebar de filtro (apenas desktop) -->
+  <div class="filter-sidebar" *ngIf="isDesktop">
+    <form (submit)="applyFilters(); $event.preventDefault()">
+      <div class="filter-option">
+        <h3>Filtrar por</h3>
+        <hr>
+        <h5>Produtos</h5>
+        <label>
+          <input type="checkbox" (change)="updateFilter('clothing', $event)">
+          Camisetas e Moletom
+        </label>
+      </div>
+      <div class="filter-option">
+        <label>
+          <input type="checkbox" (change)="updateFilter('infantil', $event)">
+          Infantil
+        </label>
+      </div>
+      <div class="filter-option">
+        <label>
+          <input type="checkbox" (change)="updateFilter('accessory', $event)">
+          Acessórios
+        </label>
+        <hr>
+        <h5>Preço</h5>
+      </div>
+      <div>
+        <input 
+          type="range" 
+          id="price-range" 
+          min="0" 
+          max="500" 
+          step="10" 
+          [value]="priceRange" 
+          (input)="onPriceRangeChange($event)">
+        <label for="price-range">Faixa de preço: {{ priceRange | currency }}</label> <br><br>
+      </div>
+      <button type="button" class="clear" (click)="clearFilter()">Mostrar Todos</button>
+    </form>
+  </div>
+
+  <!-- Popup de filtro (apenas para mobile) -->
+  <div class="filter-popup" *ngIf="isMobile && showPopup">
+    <div class="popup-content">
+      <button (click)="togglePopup()">x</button>
+      <form (submit)="applyFilters(); $event.preventDefault()">
+        <div class="filter-option">
+          <h3>Filtrar por</h3>
+          <hr>
+          <h5>Produtos</h5>
+          <label>
+            <input type="checkbox" (change)="updateFilter('clothing', $event)">
+            Camisetas e Moletom
+          </label>
+        </div>
+        <div class="filter-option">
+          <label>
+            <input type="checkbox" (change)="updateFilter('infantil', $event)">
+            Infantil
+          </label>
+        </div>
+        <div class="filter-option">
+          <label>
+            <input type="checkbox" (change)="updateFilter('accessory', $event)">
+            Acessórios
+          </label>
+          <hr>
+          <h5>Preço</h5>
+        </div>
+        <div>
+          <input 
+            type="range" 
+            id="price-range" 
+            min="0" 
+            max="500" 
+            step="10" 
+            [value]="priceRange" 
+            (input)="onPriceRangeChange($event)">
+          <label for="price-range">Faixa de preço: {{ priceRange | currency }}</label> <br><br>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Container de produtos -->
+  <div class="product-container">
+    <div class="centralizar">
+      <div *ngFor="let product of filteredProducts" class="container-card">
+        <div class="card-product">
+          <a [routerLink]="['/products', product.id]">
+            <img class="card-img-top-product" [src]="product.image" [alt]="product.name">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">R$ {{ product.price | number:'1.2-2' }}</p>
+            <button (click)="comprar(product.id)" class="btn">COMPRAR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
