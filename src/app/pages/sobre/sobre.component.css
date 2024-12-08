@@ -29,9 +29,9 @@ section {
 
 /* Textoque fala sobre o Ios */
 .textoSobreIos{
-    width: 50%;
-    font-size: 22px;
-    margin-left: 42%;
+    width: 44%;
+    font-size: 18px;
+    margin-left: 46%;
     text-align: justify; 
 }
 
@@ -64,8 +64,8 @@ section {
 
 /* Texto que fala da loja IOS */
 .textoLojaIos{
-    width: 50%;
-    font-size: 22px;
+    width: 44%;
+    font-size: 18px;
     margin-left: 8%;
     text-align: justify; 
 }
@@ -73,18 +73,24 @@ section {
 /* Imagem da fachada do IOS */
 .fachadaIos {
     position: absolute;
-    max-width: 40%;
-    height: auto;
-    max-height: 80%;
+    max-width: 34%;
+    height: 90%;
     border-radius: 60px;
     left: 8%;
 }
 
 .imagem2 {
     position: absolute;
-    max-width: 40%;
+    max-width: 36%;
     height: auto;
-    max-height: 80%;
+    border-radius: 60px;
+    right: 8%;
+}
+
+.imagemlogo{
+    position: absolute;
+    max-width: 34%;
+    height: auto;
     border-radius: 60px;
     right: 8%;
 }
@@ -131,16 +137,58 @@ h1{
     padding: 30px;
     border-radius: 5px; 
     display: inline-block; 
-    font-size: 22px;
+    font-size: 18px;
     color: #000000;
     letter-spacing: 0.1px;
     text-align: justify; 
 }
 
 
+
+/* Parte doa-se */
+
+
+h2{
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+}
+
+.textodoa{
+    margin: 0 auto;
+    padding: 0 4%; /* 10% de espaçamento nas laterais */
+}
+
+.card-img-top{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    height: auto;
+}
+
+.qrcode{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.qrcode{
+    text-align: center;
+    margin-top: 10px; 
+    margin-bottom: 2%;
+    color: #FFA500;
+}
+
+
 /* Modelo para mobile */
 
 @media screen and (max-width: 768px) {
+
+/* Estilização card doe */
+
+    .card{
+        text-align: justify;
+    }
 
     section {
         background-color: #d1a8ee; 
@@ -160,7 +208,7 @@ h1{
         font-size: 16px;       
     }
 
-    .fachadaIos, .imagem2, .imagemParceiro {
+    .fachadaIos, .imagem2, .imagemParceiro, .imagemlogo{
         position: static;
         max-width: 100%;        
         height: auto;           
@@ -192,6 +240,11 @@ h1{
         border-radius: 20px; 
     }
 
+    .card-img-top{
+        width: 0%;
+        height: 50%;
+    }
+    
   }
   
   /* Ajustes para telas muito pequenas (smartphones) */

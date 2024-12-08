@@ -1,5 +1,7 @@
+
+/* Parte que está toda informação do site */
 .container-login{
-    background: linear-gradient(to top, #d1a8ee, #49176d);
+    background: #49176d;
     display: flex;                
     flex-direction: column;       
     justify-content: center;      
@@ -8,6 +10,7 @@
     margin: 0;        
 }
 
+/* Imagem tita */
 #login {
     width: 800px;                                
     margin-left: auto;
@@ -64,13 +67,26 @@
     transform: scale(1.05);
 }
 
-/* a{
-    text-decoration: none;
-    font-size: 18px; 
-    font-family: 'Roboto', sans-serif;
-    color: #fff;
-    display: flex;    
-} */
+/* Detalhe faixas */
+
+.canto-esquerdo, .canto-direito {
+    position: fixed;
+    width: 20rem;
+    height: auto;
+    z-index: 1; 
+}
+
+.canto-esquerdo {
+    bottom: 0;
+    left: -6%; 
+}
+
+.canto-direito {
+    top: 0;
+    right: -6%;
+
+}
+
 
 #home, img{
     width: 70px;
@@ -85,9 +101,6 @@
     height: 70px;
 }
 
-/* p{
-    align-self: flex-end;
-} */
 
 /* Responsividade */
 @media (max-width: 600px) {
@@ -115,9 +128,18 @@
         top: 10%;
     }
 
-    /* a{
-        font-size: 14px;
-    } */
-}
+ 
 
+    .canto-esquerdo, .canto-direito {
+        width: 8rem;  
+    }   
+
+    .canto-esquerdo {
+        left: -16%; 
+    }
+
+    .canto-direito {
+        right: -16%; 
+    }
+}
 

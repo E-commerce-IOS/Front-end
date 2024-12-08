@@ -1,13 +1,25 @@
 
 .body {
-    
   min-height: 100vh;
-  /* background: linear-gradient(to bottom, #aa6b9c 50%, #fcfcfc 50%); */
-  background: linear-gradient(to top, #ffffff 55%, #49176d 25%, #d1a8ee);
+  background: #49176d 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Imagem Tita */
+.tita{
+  width: 20%;
+  height: 20%;
+}
+
+/* Checkbox Lmebrar */
+.checkbox-container label {
+  margin-left: 10px; /* Ajuste o valor conforme necessário */
 }
 
 /* Página Login */
-
 /* conteiner login*/
 
 #container-login {
@@ -73,7 +85,6 @@ input:focus {
   border-bottom: #08558b;
 }
 
-
 input[type="submit"] {
   text-align: center;
   text-transform: uppercase;
@@ -105,12 +116,14 @@ input#nomes , input#senha {
   border-radius: 10px;
 }
 
+/* Textos perto do botão login */
 a, p{
   text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #011420;
+  margin: 5px;
 }
 
 b{
@@ -129,6 +142,7 @@ p{
   font-family: 'Roboto', sans-serif;
 }
 
+/* Botão */
 #centralizador {
   display: flex; 
   justify-content: center; 
@@ -252,10 +266,6 @@ button#btn-login span:nth-child(4) {
 
 /* Logo Home */
 
-/* a{
-  text-decoration: none;
-} */
-
 #home, img{
   width: 70px;
   height: 70px;
@@ -269,55 +279,56 @@ button#btn-login span:nth-child(4) {
   height: 30px;
 }
 
-/* #paragrafo{
-  font-size: 16px; 
-  font-family: 'Roboto', sans-serif;
-  color: #ffffff;
-
-} */
-
 
 /* Responsividade */
 @media (max-width: 600px) {
 
+  .tita {
+    margin-top: 20px; 
+  }
+  
   #container-login {
-      width: 90%; 
-      padding: 12px 20px; 
-      font-size: 16px; 
-      letter-spacing: 0.5px; 
+    width: 90%; 
+    padding: 12px 20px; 
+    font-size: 16px; 
+    letter-spacing: 0.5px; 
   }
 
+
   button{
-      width: 20%;
-      height: 4%;
-      font-size: 14px;
-      letter-spacing: 0.5px; 
+    width: 20%;
+    height: 4%;
+    font-size: 14px;
+    letter-spacing: 0.5px; 
   }
 
   #form{
-      padding: 4px;
-      width: 80%;
+    padding: 4px;
+    width: 80%;
   }
 
   a{
-  font-size: 14px;
+    font-size: 14px;
   }
 
-  button#btn-login{
-  font-size: 16px;
-  text-align: center;
-  width: 60%; 
-  height: auto;
+  button#btn-login {
+    font-size: 16px;
+    text-align: center;
+    width: 60%;
+    height: auto;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
   }
 
   #home, img{
     width: 50px;
     height: 50px;
-}
+  }
 
-#home{
+  #home{
     top: 10%;
+  }
+  
 }
-}
-
 

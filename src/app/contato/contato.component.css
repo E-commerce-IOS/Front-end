@@ -1,255 +1,191 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Nunito&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 
-/* Estilo para o corpo e reset básico */
+/* Global styles */
+body {
+  font-family: 'Barlow', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+  background-color: #f8f0ff;
+}
 
-
-/* Parte que fala sobre a Tita */
+/* Section Tita */
 .parteTita {
-    display: flex;
-    align-items: center;             
-    justify-items: center;           
-    width: 100vw;                    
-    height: 550px;                     
-    background-color: #d1a8ee;      
-    padding: 1.4rem;                  
-    box-sizing: border-box;        
-    text-align: left;
-    margin-top: 6%;
-    color: rgb(0, 0, 0);
-    margin-bottom: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2rem;
+  background-color: #d1a8ee;
+  border-radius: 20px;
+  margin: 4% auto;
+  color: #1f1f1f;
+  text-align: left;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Imagem da Tita */
+.parteTita:hover {
+  transform: scale(1.02);
+}
+
 .imagem1 {
-    position: absolute;
-    max-width: 40%;
-    height: auto;
-    max-height: 80%;
-    border-radius: 60px;
-    right: 0%;
+  max-width: 45%;
+  height: auto;
+  border-radius: 20px;
+  margin-left: 1.5rem;
+  object-fit: cover;
 }
 
-/* Texto que fala da Tita */
-.Tita{
-    width: 50%;
-    font-size: 22px;
-    margin-left: 8%;
-    text-align: justify; 
+.Tita {
+  width: 50%;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify;
 }
 
-/* Parte que fala de devolução */
+/* Section Troca */
 .parteTroca {
-    display: flex;
-    align-items: center;             
-    justify-items: center;          
-    width: 100%;                    
-    height: 500px;                  
-    background-color: #49176d;     
-    padding: 1rem;                  
-    box-sizing: border-box;         
-    text-align: left;
-    margin-top: 12%;
-    color: rgb(248, 248, 248);
-    margin-bottom: 12%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2rem;
+  background-color: #49176d;
+  border-radius: 20px;
+  color: #f8f0ff;
+  margin: 6% auto;
+  text-align: left;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Imagem fala sobre troca e devolução */
+.parteTroca:hover {
+  transform: scale(1.02);
+}
+
 .imagem2 {
-    position: absolute;
-    max-width: 40%;
-    height: auto;
-    max-height: 80%;
-    border-radius: 60px;
-    left: 8%;
-    padding: 30px;
-    background-color: #daa748;
+  max-width: 45%;
+  height: auto;
+  border-radius: 20px;
+  margin-right: 1.5rem;
+  object-fit: cover;
+ 
 }
 
-/*Texto fala sobre troca e devolução */
-.troca{
-    width: 44%;
-    font-size: 22px;
-    margin-left: 50%;
-        text-align: justify; 
+.troca {
+  width: 50%;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify;
 }
 
-/* Estilos gerais para o card */
-.card {
-    display: flex;
-    flex-direction: row;
-    border: 1px solid #ddd; 
-    border-radius: 8px;
-    padding: 10px;
-    max-width: 100%;
-    margin-bottom: 80px;
-}
-
-h2{
-    padding: 0.4rem;
-    color: #FF8C00;
-    border-radius: 30px;
-}
-
-
-/* Seção contato */
+/* Contact section */
 .parteContato {
-    background-color: #d1a8ee; 
-    padding: 80px; 
-    text-align: center; 
-    position: relative;
+  background-color: #d1a8ee;
+  padding: 4rem 2rem;
+  text-align: center;
+  border-radius: 20px;
+  
 }
+
+.titulo-contato {
+  font-size: 2.5em;
+  margin-bottom: 1.5rem;
+  color: #49176d;
+  font-weight: 600;
+}
+
+/* Contact cards */
+.informacoes-contato {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.item-contato {
+  width: 100%;
+  padding: 2rem;
+  background-color: #e4c6fa;
+  border-radius: 15px;
+  text-align: center;
+  color: #242424;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.item-contato:hover {
+  transform: translateY(-5px);
+
+}
+
+.icone {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.item-contato h3 {
+  font-size: 1.3em;
+  color: #FF8C00;
+}
+
+.email, .store-link, .fa-whatsapp {
+  color: #242424;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.email:hover, .store-link:hover, .fa-whatsapp:hover {
+  color: #49176d;
+  text-decoration: underline;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .parteTita, .parteTroca {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    margin-top: 4%;
+  }
+
+  .imagem1, .imagem2 {
+    max-width: 100%;
+    margin: 1rem 0;
+    border-radius: 10px;
+  }
+
+  .Tita, .troca {
+    font-size: 1rem;
+  }
+
+  .item-contato {
+    padding: 1.5rem;
+    width: 90%;
+  }
 
   .titulo-contato {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #49176d;
-    padding: 2%;
+    font-size: 2em;
   }
-  
-  .informacoes-contato {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    justify-items: center;
+}
+
+@media screen and (max-width: 480px) {
+  .titulo-contato {
+    font-size: 1.8em;
   }
-  
+
   .item-contato {
-    background-color: #e4c6fa;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 100%;
-  }
-  
-  .item-contato h3 {
-    font-size: 1.2em;
-    color: #FF8C00;
-    margin-bottom: 10px;
-  }
-  
-  .item-contato p {
+    width: 95%;
+    padding: 1rem;
     font-size: 1em;
-    color: #242424;
   }
 
-
-/* Modelo para mobile */
-
-@media screen and (max-width: 768px) {
-
-    /* Tituto tita */
-    h2{
-        margin-top: 10%;
-    }
-
-    /* textos */
-    .troca, .Tita {
-        width: 100%;            
-        margin: 0 auto 1rem;    /* Centralizar e adicionar espaço inferior */
-        font-size: 16px;      
-    }
-
-    /* imagens */
-    .imagem1, .imagem2 {
-        position: static;
-        max-width: 100%;        
-        height: auto;           
-        margin: 0 auto 1rem;    /* Centralizar e adicionar espaço inferior */
-        border-radius: 20px;   
-        max-height: 450px; /* Ajuste baseado no design */
-        object-fit: cover; /* Ajusta a imagem sem distorção */ 
-    }
-
-    .parteTroca, .parteTita {
-        flex-direction: column; /* Alinhar texto e imagem em coluna */
-        text-align: center;     
-        height: auto;   
-    }
-
-    
-    /* Diminui a margem entre os card*/
-    .parteTroca, .parteTita {
-        margin-top: 6%;   
-        margin-bottom: 6%; 
-    }
-
-    
-    /* Parte contato */
-
-    .titulo-contato {
-        font-size: 2em;
-      }
-    
-      .informacoes-contato {
-        grid-template-columns: 1fr;
-      }
-    
-      .item-contato {
-        width: 80%;
-        margin: 10px auto;
-      }
-
-    /* Diminui a margem entre os card*/
-    .sobreOios, .conteudo, .sejaUmParceiro {
-        margin-top: 6%;   
-        margin-bottom: 6%; 
-    }
-    
+  .icone {
+    width: 70px;
+    height: 70px;
   }
-  
-  /* Ajustes para telas muito pequenas (smartphones) */
-  @media screen and (max-width: 480px) {
-
-
-    .parteContato {
-        text-align: center; /* Centraliza o conteúdo da parteContato */
-      }
-    .troca, .Tita {
-        width: 100%;           
-        margin: 0 auto 1rem;    /* Centralizar e adicionar espaço inferior */
-        font-size: 16px;       
-    }
-
-    .imagem1, .imagem2 {
-        max-width: 90%;  /* Ajusta a largura da imagem */
-        height: auto;    /* Garante que a altura seja proporcional */
-        margin-top: 1rem; /* Adiciona um espaço entre o texto e a imagem */
-    }
-
-
-    h1{
-        width: 70%; 
-        padding: 1.5rem; 
-        margin: 0; 
-        border-radius: 20px; 
-        font-size: 1.7rem;
-    }
-  }
-
-
-/* Parte contato */
-
-@media (min-width: 1200px) {
-    
-    .titulo-contato {
-      font-size: 3em;
-    }
-  
-    .informacoes-contato {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-  
-    .item-contato {
-      width: 90%;
-    }
-    
-
-  }
-
-
-
-
-
-
-
-
+}

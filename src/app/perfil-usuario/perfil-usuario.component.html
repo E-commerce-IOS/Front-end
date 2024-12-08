@@ -56,6 +56,7 @@
       <button *ngIf="!isEditing" (click)="toggleEdit()" class="edit-btn">
         Editar Informações
       </button>
+      <button class="edit-btn">Painel do Administrador</button>
       <button *ngIf="isEditing" (click)="saveChanges()" class="save-btn">
         Salvar Alterações
       </button>
@@ -81,20 +82,7 @@
         </li>
       </ul>
   
-      <button (click)="clearOrderHistory()" class="clear-history-btn">
-        Limpar Histórico
-      </button>
     </section>
   
-    <!-- Resumo do Checkout -->
-    <section *ngIf="checkoutSummary" class="checkout-summary">
-      <h3>Resumo do Checkout</h3>
-      <p><strong>Total:</strong> R$ {{ checkoutSummary.total.toFixed(2) }}</p>
-      <ul>
-        <li *ngFor="let item of checkoutSummary.items">
-          {{ item.quantity }}x {{ item.name }} - R$ {{ item.price }}
-        </li>
-      </ul>
-    </section>
   </div>
   

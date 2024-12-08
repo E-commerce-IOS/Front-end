@@ -6,11 +6,12 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { CarrinhoService } from './services/carrinho.service';
 import { CarrinhoComponent } from "./carrinho/carrinho.component";
 import { AngularVlibras } from 'angular-vlibras';
+import { ChatbotComponent } from "./chatbot/chatbot.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, CommonModule, CarrinhoComponent, AngularVlibras],
+  imports: [RouterOutlet, RouterLink, CommonModule, CarrinhoComponent, AngularVlibras, ChatbotComponent],
   providers: [CarrinhoService],  // Adiciona o serviço aqui
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

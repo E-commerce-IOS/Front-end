@@ -6,7 +6,7 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
   z-index: 10;
 }
 
@@ -28,7 +28,8 @@
   transition: transform 0.3s ease-in-out, right 0.3s ease-in-out; 
   z-index: 20;
   overflow-y: auto; 
-  max-height: calc(100% - 80px);  
+  max-height: calc(100% - 80px); 
+  justify-content: space-between; 
 }
 
 
@@ -132,58 +133,59 @@ ul {
   list-style-type: none;
 }
 
-@media (max-width: 768px) {
-  /* Botão de fechamento */
+@media (max-width: 500px) {
+ 
   .close-btn {
     position: absolute;
     right: 20px;
-    top: 100px; /* Adicionei a unidade de medida */
+    top: 100px; 
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
-    color: #49176d; /* Cor do ícone */
+    color: #49176d; 
   }
 
   .cart-sidebar {
-    top: 10; /* Corrigido para ajustar a posição */
-    width: 100%; /* Garante que ocupa toda a largura da tela */
+    top: 10; 
+    width: 100%; 
     height: 100%;
-    max-width: none; /* Remove restrição de largura máxima */
-    border-radius: 0; /* Garante que a borda do carrinho fique reta */
-    overflow-y: scroll; /* Permite rolagem se necessário */
+    max-width: none; 
+    border-radius: 0; 
+    overflow-y: scroll; 
+
+    .cart-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+      .cart-item img {
+        width: 60px;
+        height: 60px;
+      }
+    
+      .cart-item span {
+        font-size: 1rem;
+      }
+
+      .quantidade-btn button {
+        padding: 6px 10px;
+        font-size: 0.875rem;
+      }
   }
 }
 
+.remove-btn img {
+  width: 16px;
+  height: 16px;
+}
 
-  .cart-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 
-  .cart-item img {
-    width: 60px;
-    height: 60px;
-  }
+.checkout-btn {
+  padding: 12px;
+  font-size: 1rem;
+}
 
-  .cart-item span {
-    font-size: 1rem;
-  }
 
-  .quantidade-btn button {
-    padding: 6px 10px;
-    font-size: 0.875rem;
-  }
 
-  
-  .remove-btn img {
-    width: 16px;
-    height: 16px;
-  }
-  
-
-  .checkout-btn {
-    padding: 12px;
-    font-size: 1rem;
-  }
 
