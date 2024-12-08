@@ -56,6 +56,21 @@
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
   }
+
+  /* Botão x Chat */
+  .botão {
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 50%; 
+    width: 30px; 
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
   
   .chatbot-icon img {
