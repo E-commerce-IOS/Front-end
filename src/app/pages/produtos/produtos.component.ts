@@ -1,3 +1,5 @@
+import { Produto } from './../../models/produto.model';
+import { Tamanho } from './../../models/tamanho.model';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
@@ -6,17 +8,8 @@ import { CarrinhoService } from '../../services/carrinho.service';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from "../../footer/footer.component";
 import { WindowService } from '../../services/window.service';
-
-interface Product {
-  image: string;
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  type?: string;
-  size?: string;
-  selectedSize?: string;
-}
+import { ItemService } from '../../services/item.service';
+import { Item } from '../../models/item.model';
 
 @Component({
   selector: 'app-produtos',
@@ -26,25 +19,26 @@ interface Product {
   styleUrls: ['./produtos.component.css'],
 })
 export class ProdutosComponent implements OnInit {
-  products: Product[] = [];
-  filteredProducts: Product[] = [];
+  products: Item[] = [];
+  filteredProducts: Item[] = [];
   selectedFilters: Set<string> = new Set();
   priceRange: number = 250;
+  produto: any;
 
   showPopup: boolean = false;
   isMobile: boolean = false;
   isDesktop: boolean = false;
 
   constructor(
-    private productService: ProductService,
+    private productService: ItemService,
     private carrinhoService: CarrinhoService,
     private router: Router,
     private windowService: WindowService // Injeta o WindowService
   ) {}
 
   ngOnInit(): void {
-    this.products = this.productService.getProducts();
-    this.filteredProducts = [...this.products];
+    
+    this.obterProdutosCadastrados()
 
     // Atualiza o tipo de dispositivo baseado no tamanho da janela
     this.updateDeviceType();
@@ -68,17 +62,30 @@ export class ProdutosComponent implements OnInit {
     }
   }
 
+  obterProdutosCadastrados() {
+    this.productService.obterProdutos()
+        .subscribe(items => {
+            const uniqueProducts = items.filter((item, index, self) =>
+                index === self.findIndex((t) => (
+                    t.produto.idProduto === item.produto.idProduto
+                ))
+            );
+            this.products = uniqueProducts;
+            this.filteredProducts = [...this.products];
+        });
+}
+
   // Restante do código permanece o mesmo
-  comprar(id: number): void {
-    const produto = this.products.find((p) => p.id === id);
+  comprar(id: number | undefined): void {
+    const produto = this.products.find((p) => p.idItem === id);
     if (produto) {
       const produtoParaCarrinho = {
-        id: produto.id,
-        name: produto.name,
-        price: produto.price,
-        type: produto.type,
-        image: produto.image,
-        size: produto.type === 'clothing' ? produto.selectedSize : null,
+        id: produto.idItem,
+        name: produto.produto.nomeProduto,
+        price: produto.preco,
+        type: produto.produto.categoria,
+        image: produto.imagemProduto,
+        size: produto.produto.categoria === 'Roupas' ? produto.tamanho : null,
         quantity: 1,
       };
       this.carrinhoService.toggleCart();
@@ -93,27 +100,31 @@ export class ProdutosComponent implements OnInit {
   updateFilter(category: string, event: Event): void {
     const target = event.target as HTMLInputElement;
     if (target) {
-      const isChecked = target.checked;
-      if (isChecked) {
-        this.selectedFilters.add(category);
-      } else {
-        this.selectedFilters.delete(category);
-      }
-      this.applyFilters();
+        const isChecked = target.checked;
+        console.log(`Category: ${category}, Checked: ${isChecked}`);
+        
+        if (isChecked) {
+            this.selectedFilters.add(category);
+        } else {
+            this.selectedFilters.delete(category);
+        }
+
+        console.log('Selected Filters: ', this.selectedFilters);
+        this.applyFilters();
     }
-  }
+}
 
   applyFilters(): void {
     this.filteredProducts = this.products.filter((product) => {
       const matchesCategory =
-        this.selectedFilters.size === 0 ||
-        (product.type && this.selectedFilters.has(product.type));
+        this.selectedFilters.size === 0 || 
+        (product.produto.categoria && this.selectedFilters.has(product.produto.categoria));
 
-      const matchesPrice = product.price <= this.priceRange;
+      const matchesPrice = product.preco <= this.priceRange;
 
       return matchesCategory && matchesPrice;
     });
-  }
+}
 
   onPriceRangeChange(event: Event): void {
     const target = event.target as HTMLInputElement;

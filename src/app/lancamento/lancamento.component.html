@@ -10,12 +10,14 @@
          viewBox="0 0 100 100">
       <circle cx="50" cy="50" r="50" />
     </svg>
+    <div class="container-image">
     <img class="product-image" 
          src= "{{item.imagemProduto}}"
          alt="{{item?.produto?.descricaoProduto}}">
+        </div>
     <div class="product-details">
       <h2>{{item?.produto?.nomeProduto}}</h2>
-      <span>{{ item?.preco}}</span>   <!-- Alterar para não se fixo  -->
+      <span class="card-text"> R$ {{ item?.preco | number:'1.2-2'}}</span>   <!-- Alterar para não se fixo  -->
     
     </div>
     

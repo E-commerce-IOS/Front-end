@@ -1,4 +1,4 @@
-<div class="product-page">
+<div class="product-page"  *ngIf="product" >
     <div class="product-container">
       <!-- Coluna da Imagem -->
       <div class="product-images">
@@ -8,21 +8,21 @@
              (mousemove)="onMouseMove($event)"
              (mouseenter)="onMouseEnter()"
              (mouseleave)="onMouseLeave()">
-          <img class="main-image" #mainImage [src]="product?.image" alt="{{ product?.name }}" />
-          <div class="zoom-lens" #zoomLens></div> <!-- Lupa -->
+          <img class="main-image" #mainImage [src]="product.imagemProduto" alt="{{ product.produto.descricaoProduto }}" />
+          <div class="zoom-lens" #zoomLens></div> <!-- Lupa -->         
         </div>
       </div>
   
       <!-- Coluna de Detalhes -->
       <div class="product-details">
-        <h2>{{ product?.name }}</h2>
-        <p class="product-code">Código: {{ product?.code }}</p>
+        <h2>{{ product.produto.nomeProduto }}</h2>
+        <p class="product-code">Código: {{ product.codigo }}</p>
   
         <!-- Tamanhos -->
         <div class="sizes">
           <p>Tamanho:</p>
           <div class="size-buttons">
-            <button *ngFor="let size of product?.sizes"
+            <button *ngFor="let size of sizes"
                     class="size-button"
                     [class.selected]="selectedSize === size"
                     (click)="selectSize(size)">
@@ -35,18 +35,19 @@
         <div class="colors">
           <p>Cores disponíveis:</p>
           <div class="color-buttons">
-            <button *ngFor="let color of product?.colors"
+            <button 
                     class="color-button"
-                    [style.backgroundColor]="color"
-                    [class.selected]="selectedColor === color"
-                    (click)="changeColor(color)">
+                    [style.backgroundColor]="product.cor.descricao"
+                    [class.selected]="selectedColor === product.cor.nome"
+                    (click)="changeColor(product.cor.nome)">
+                    
             </button>
           </div>
         </div>
   
         <!-- Preço -->
         <p class="price">R$ {{ formattedPrice }}</p>
-        <p class="installments">3x de R$ {{ (product?.price / 3) | number:'1.2-2' }} no cartão de crédito</p>
+        <p class="installments">3x de R$ {{ (product.preco / 3) | number:'1.2-2' }} no cartão de crédito</p>
   
         <!-- Ações -->
         <div class="actions">

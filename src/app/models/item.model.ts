@@ -1,12 +1,14 @@
+import { Cor } from "./cor.model";
 import { Produto } from "./produto.model";
+import { Tamanho } from "./tamanho.model";
 
 
 export interface Item {
 // ? para identificar que não é obrigátorio
   idItem?: number,
-  idCor?: number,
+  cor: Cor,
   produto: Produto,
-  idTamanho: number,
+  tamanho?: Tamanho,
   preco: number,
   quantidade: number,
   modelo: string | null,

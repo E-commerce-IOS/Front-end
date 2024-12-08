@@ -4,6 +4,10 @@ import { ProductService } from '../../app/services/product.service';
 import { DecimalPipe, CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CarrinhoService } from '../../app/services/carrinho.service';
+import { ItemService } from '../services/item.service';
+import { Item } from '../models/item.model';
+import { Cor } from '../models/cor.model';
+import { Tamanho } from '../models/tamanho.model';
 
 @Component({
   selector: 'app-detalhes-produto',
@@ -14,16 +18,17 @@ import { CarrinhoService } from '../../app/services/carrinho.service';
   imports: [CommonModule],
 })
 export class DetalhesProdutoComponent implements OnInit {
-  product: any;
+  product: Item | null = null;
   formattedPrice!: string;
-  selectedSize: string = '';
-  selectedColor: string = '';
+  selectedSize:  Tamanho| string = '';
+  selectedColor: Cor | string = '';
   showSizeGuide: boolean = false; // Variável para controlar a exibição do popup
   sizeGuideImage: string = 'img/tabela-medida.png'; // Caminho da imagem da tabela de medidas
+  
 
-  @ViewChild('imageContainer', { static: true }) imageContainer!: ElementRef;
-  @ViewChild('mainImage', { static: true }) mainImage!: ElementRef;
-  @ViewChild('zoomLens', { static: true }) zoomLens!: ElementRef;
+  @ViewChild('imageContainer', { static: false }) imageContainer!: ElementRef;
+  @ViewChild('mainImage', { static: false }) mainImage!: ElementRef;
+  @ViewChild('zoomLens', { static: false }) zoomLens!: ElementRef;
 
   // Variáveis para controle do modal
   showModal: boolean = false;
@@ -31,29 +36,42 @@ export class DetalhesProdutoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService,
+    private productService: ItemService,
     private decimalPipe: DecimalPipe,
     private router: Router,
     private carrinhoService: CarrinhoService,
   ) {}
 
+
+
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.product = this.productService.getProductById(id);
-
-    if (this.product) {
-      this.formattedPrice = this.decimalPipe.transform(this.product.price, '1.2-2') || '';
-      this.selectedColor = this.product.colors?.[0] || '';
-      this.selectedSize = this.product.sizes?.[0] || '';
-    }
+    this.loadProductDetails(id);
   }
+
+   // Método para carregar detalhes do produto da API
+   loadProductDetails(id: number): void {
+    this.productService.getProductById(id).subscribe((item: Item) => {
+    
+      this.product = item;
+      this.formattedPrice = this.decimalPipe.transform(this.product.preco, '1.2-2') || '';
+      this.selectedColor = this.product.cor?.nome || '';
+      this.selectedSize = this.product.tamanho || '';
+    });
+  }
+  
+  get sizes(): string[] {
+    const descricao = this.product?.tamanho?.descricao;
+    return descricao ? [descricao] : [];
+  }
+
 
   selectSize(size: string) {
     this.selectedSize = size;
   }
 
-  changeColor(color: string) {
-    this.selectedColor = color;
+  changeColor(color: string): void {
+    this.selectedColor = color;  
   }
 
   // Método para gerenciar a lógica da lupa
@@ -61,7 +79,7 @@ export class DetalhesProdutoComponent implements OnInit {
     const { left, top, width, height } = this.imageContainer.nativeElement.getBoundingClientRect();
     const mouseX = event.clientX - left;
     const mouseY = event.clientY - top;
-
+ 
     // Tamanho da lente de zoom
     const lensSize = 100; // Tamanho da lupa
     const lensX = mouseX - lensSize / 2;
@@ -76,6 +94,8 @@ export class DetalhesProdutoComponent implements OnInit {
 
     // Ajusta a origem da imagem para a posição da lupa
     this.mainImage.nativeElement.style.transformOrigin = `${(mouseX / width) * 100}% ${(mouseY / height) * 100}%`;
+    
+    console.log('Width:', width, 'Height:', height);
   }
 
   onMouseEnter() {
@@ -93,16 +113,19 @@ export class DetalhesProdutoComponent implements OnInit {
   comprar(): void {
     if (this.product) {
       const produtoParaCarrinho = {
-        id: this.product.id,
-        name: this.product.name,
-        price: this.product.price,
-        type: this.product.type,
-        image: this.product.image,
+        id: this.product.idItem,
+        name: this.product.produto.nomeProduto,
+        price: this.product.preco,
+        type: this.product.produto.categoria,
+        image: this.product.imagemProduto,
         size: this.selectedSize || null, // Adicionando a seleção do tamanho
         quantity: 1,
       };
       this.carrinhoService.toggleCart(); // Exibe ou oculta o carrinho
       this.carrinhoService.addItem(produtoParaCarrinho); // Adiciona o produto ao carrinho
     }
-  }
+  } 
+
+
+
 }

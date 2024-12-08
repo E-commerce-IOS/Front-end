@@ -2,12 +2,15 @@ import { Component } from '@angular/core';
 import { CarrinhoService } from '../../app/services/carrinho.service';
 import { Item } from '../models/item.model';
 import { ItemService } from '../services/item.service';
-import {  NgFor } from '@angular/common';
+import {  CommonModule, NgFor } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-lancamento',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, CommonModule, RouterModule, FormsModule, FooterComponent],
   templateUrl: './lancamento.component.html',
   styleUrl: './lancamento.component.css'
 })

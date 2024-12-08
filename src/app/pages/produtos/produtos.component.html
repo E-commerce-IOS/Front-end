@@ -14,19 +14,19 @@
         <hr>
         <h5>Produtos</h5>
         <label>
-          <input type="checkbox" (change)="updateFilter('clothing', $event)">
-          Camisetas e Moletom
+          <input type="checkbox" (change)="updateFilter('Adulto', $event)">
+          Adulto
         </label>
       </div>
       <div class="filter-option">
         <label>
-          <input type="checkbox" (change)="updateFilter('infantil', $event)">
+          <input type="checkbox" (change)="updateFilter('Infantil', $event)">
           Infantil
         </label>
       </div>
       <div class="filter-option">
         <label>
-          <input type="checkbox" (change)="updateFilter('accessory', $event)">
+          <input type="checkbox" (change)="updateFilter('Acessorio', $event)">
           Acessórios
         </label>
         <hr>
@@ -57,19 +57,19 @@
           <hr>
           <h5>Produtos</h5>
           <label>
-            <input type="checkbox" (change)="updateFilter('clothing', $event)">
-            Camisetas e Moletom
+            <input type="checkbox" (change)="updateFilter('Adulto', $event)">
+            Adulto
           </label>
         </div>
         <div class="filter-option">
           <label>
-            <input type="checkbox" (change)="updateFilter('infantil', $event)">
+            <input type="checkbox" (change)="updateFilter('Infantil', $event)">
             Infantil
           </label>
         </div>
         <div class="filter-option">
           <label>
-            <input type="checkbox" (change)="updateFilter('accessory', $event)">
+            <input type="checkbox" (change)="updateFilter('Acessorio', $event)">
             Acessórios
           </label>
           <hr>
@@ -93,15 +93,15 @@
   <!-- Container de produtos -->
   <div class="product-container">
     <div class="centralizar">
-      <div *ngFor="let product of filteredProducts" class="container-card">
+      <div *ngFor="let product of filteredProducts " class="container-card">
         <div class="card-product">
-          <a [routerLink]="['/products', product.id]">
-            <img class="card-img-top-product" [src]="product.image" [alt]="product.name">
+          <a [routerLink]="['/products', product.idItem]">
+            <img class="card-img-top-product" [src]="product.imagemProduto" [alt]="product.produto.descricaoProduto">
           </a>
           <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text">R$ {{ product.price | number:'1.2-2' }}</p>
-            <button (click)="comprar(product.id)" class="btn">COMPRAR</button>
+            <h5 class="card-title">{{ product.produto.nomeProduto }}</h5>
+            <p class="card-text">R$ {{ product.preco | number:'1.2-2' }}</p>
+            <button (click)="comprar(product.idItem)" class="btn">COMPRAR</button>
           </div>
         </div>
       </div>
