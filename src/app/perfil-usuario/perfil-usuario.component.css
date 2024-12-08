@@ -1,0 +1,275 @@
+/* Estrutura geral do container */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #f8f4ff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: auto;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Foto do usuário */
+  .profile-photo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    position: relative;
+    animation: slideIn 1s ease-in-out;
+  }
+  
+  .profile-photo img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 3px solid #6a0dad; /* Tom de roxo */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+  }
+  
+  .profile-photo img:hover {
+    transform: scale(1.05);
+  }
+  
+  .upload-btn {
+    background-color: #6a0dad; /* Tom de roxo */
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .upload-btn:hover {
+    background-color: #550d8a; /* Tom de roxo mais escuro */
+    transform: translateY(-3px);
+  }
+  
+  /* Informações do usuário */
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    animation: fadeInUp 1s ease-in-out;
+  }
+  
+  .info-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .info-field label {
+    font-weight: bold;
+    color: #6a0dad; /* Tom de roxo */
+  }
+  
+  .info-field input,
+  .info-field textarea {
+    padding: 0.5rem;
+    border: 1px solid #d1c4e9; /* Cor neutra com tom de roxo */
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .info-field input:focus,
+  .info-field textarea:focus {
+    border-color: #6a0dad; /* Tom de roxo */
+    box-shadow: 0 0 5px 2px rgba(106, 13, 173, 0.2);
+  }
+  
+  /* Botões de ação */
+  .action-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: flex-end;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .edit-btn,
+  .save-btn,
+  .cancel-btn,
+  .track-order,
+  .clear-history-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .edit-btn {
+    background-color: #6a0dad; /* Tom de roxo */
+  }
+  
+  .edit-btn:hover {
+    background-color: #550d8a; /* Tom de roxo mais escuro */
+    transform: translateY(-3px);
+  }
+  
+  .save-btn {
+    background-color: #4caf50; /* Verde */
+  }
+  
+  .save-btn:hover {
+    background-color: #388e3c; /* Tom de verde mais escuro */
+    transform: translateY(-3px);
+  }
+  
+  .cancel-btn {
+    background-color: #d32f2f; /* Vermelho */
+  }
+  
+  .cancel-btn:hover {
+    background-color: #b71c1c; /* Tom de vermelho mais escuro */
+    transform: translateY(-3px);
+  }
+  
+  .track-order {
+    background-color: #00796b; /* Verde */
+    color: #ffffff;
+  }
+  
+  .track-order:hover {
+    background-color: #004d40; /* Tom de verde mais escuro */
+    transform: translateY(-3px);
+  }
+  
+  .clear-history-btn {
+    background-color: #9e9e9e; /* Cinza */
+    color: #ffffff;
+  }
+  
+  .clear-history-btn:hover {
+    background-color: #616161; /* Tom de cinza mais escuro */
+    transform: translateY(-3px);
+  }
+  
+  /* Histórico de pedidos */
+  .orders-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease-in-out;
+  }
+  
+  .orders-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .order-item:last-child {
+    border-bottom: none;
+  }
+  
+  .status-delivered {
+    color: #4caf50; /* Verde */
+  }
+  
+  .status-pending {
+    color: #f57c00; /* Laranja */
+  }
+  
+  .details-btn {
+    background-color: #6a0dad; /* Tom de roxo */
+    color: #ffffff;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .details-btn:hover {
+    background-color: #550d8a; /* Tom de roxo mais escuro */
+    transform: translateY(-3px);
+  }
+  
+  /* Checkout Summary */
+  .checkout-summary {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease-in-out;
+  }
+  
+  .checkout-summary h3 {
+    margin-top: 0;
+  }
+  
+  .checkout-summary ul {
+    padding: 0;
+    list-style: none;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .profile-container {
+      padding: 1rem;
+    }
+  
+    .profile-photo img {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .info-field input,
+    .info-field textarea {
+      font-size: 0.9rem;
+    }
+  
+    .action-buttons {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+  
+  /* Animações */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(-20px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

@@ -25,4 +25,9 @@ export class CadastroComponent {
       alert('Por favor, preencha todos os campos.');
     }
   }
+
+    // Confirmação do cadastro
+    confirmOrder(): void {
+      alert('Cadastro realizado com sucesso! Agora você pode acessar sua conta');
+    }
 }

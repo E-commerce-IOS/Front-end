@@ -10,6 +10,7 @@ import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { DetalhesProdutoComponent } from './detalhes-produto/detalhes-produto.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ContatoComponent } from './contato/contato.component';
+import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 
 
 export const routes: Routes = [
@@ -23,7 +24,8 @@ export const routes: Routes = [
   { path: 'avaliacao', component: AvaliacaoComponent},
   { path: 'products/:id', component: DetalhesProdutoComponent },
   { path: 'checkout', component: CheckoutComponent},
-  { path: 'contato', component: ContatoComponent}
+  { path: 'contato', component: ContatoComponent},
+  { path: 'perfil', component: PerfilUsuarioComponent}
   
 ];
 
