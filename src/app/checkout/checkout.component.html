@@ -22,13 +22,15 @@
       </div>
       <div class="personal-details">
         <form>
-          <div id="botaorosa">
-            <a  routerLink="/login"  class="botao">Fazer Login</a>
-          </div>
-              
-          <div id="botaoazul">
-            <a routerLink="/cadastro" class="botao">Criar conta</a>
-          </div>
+          <label for="name">Nome Completo:</label>
+          <input id="name" [(ngModel)]="checkoutForm.userDetails.name" name="name" type="text" required placeholder="Digite seu nome completo" aria-describedby="nameHelp" />
+
+
+          <label for="phone">Telefone:</label>
+          <input id="phone" [(ngModel)]="checkoutForm.userDetails.phone" name="phone" type="tel" required placeholder="Ex: (11) 99999-9999" aria-describedby="phoneHelp" />
+
+          <label for="email">Email:</label>
+          <input id="email" [(ngModel)]="checkoutForm.userDetails.email" name="email" type="email" required placeholder="exemplo@dominio.com" aria-describedby="emailHelp" />
         </form>
       </div>
     </div>
@@ -150,7 +152,6 @@
   <div class="confirmation-message">
     <p>Obrigado pela sua compra, {{ checkoutForm.userDetails.name }}!</p>
     
-    <p><strong>Resumo do pedido:</strong></p>
     
     <div class="order-details">
       <p><strong>Nome completo:</strong> {{ checkoutForm.userDetails.name }}</p>
